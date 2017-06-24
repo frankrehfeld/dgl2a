@@ -15,6 +15,8 @@
 \usepackage{amsmath,amsfonts,amssymb,graphicx,mathtools,flexisym}
 \usepackage[framemethod=TikZ]{mdframed}
 \usepackage[utf8]{inputenc}
+\usepackage{cancel}
+
 %
 % Theorem style
 %
@@ -94,11 +96,19 @@ linecolor=blue
 
 % **** IF YOU WANT TO DEFINE ADDITIONAL MACROS FOR YOURSELF, PUT THEM HERE:
 
-\newcommand\E{\mathbb{E}}
+\def\R{\mathbb{R}}      	% The reals
+\def\C{\mathcal{C}}     	% continuous functions
+\def\W{\Omega}          	% Capital omega
+\def\w{\omega}          	% Lowercase omega
+\def\L{\mathrm{L}}	     	% Lebesgue-integrable functions
+\def\esssup{\text{ess sup}} % Essential supremum
+\def\iff{\Leftrightarrow}   % If and only if
+\def\implies{\Rightarrow}   % Implies
+\def\e{\epsilon}            % Epsilon
+\def\d{\delta}              % Delta
 
 \begin{document}
 %\lecture{**LECTURE-NUMBER**}{**DATE**}{**LECTURER**}{**SCRIBE**}
-\lecture{1}{18.04.2017}{Dr. Raphael Kruse}{Frank Rehfeld}
 %\footnotetext{These notes are partially based on those of Nigel Mansell.}
 
 % **** YOUR NOTES GO HERE:

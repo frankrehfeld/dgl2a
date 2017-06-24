@@ -1,10 +1,17 @@
+\lecture{1}{18.04.2017}{Dr. Raphael Kruse}{Frank Rehfeld}
 \section{Verallgemeinerte Ableitungen im Eindimensionalen}
 
 \textbf{Motivation}\\
-$u\colon\Omega\to\mathbb{R}$ gesucht mit
+$u\colon\W\to\R$ gesucht mit
 \begin{align*}
 	-&u^{\prime\prime}\left(x\right) = f\left(x\right) \forall x\in\Omega\\
 	 &u\left(a\right) = u\left(b\right) = 0 \forall x\in\partial\Omega
 \end{align*}
 für ein gegebenes $f$
 
+\textbf{Ziel}\\
+Lösungsbegriff abschwächen um unstetige $f$ umzusetzen. Idee hierfür ist die Multiplikation mit Testfunktionen und anschließende partielle Integration.
+\begin{equation*}
+	\int_{a}^{b} u^{\prime}\left(x\right)v^{\prime}\left(x\right) + \cancel{\left[u^{\prime}\left(x\right)v\left(x\right)\right]_{a}^{b}} = \int_{a}^{b} f\left(x\right)v\left(x\right)
+\end{equation*}
+Somit ist nicht mehr nötig, dass $u\in\C^{2}$. Dafür zusätzliche Forderung: $u^{\prime}v^{\prime}, fv\in\L^{1}$
