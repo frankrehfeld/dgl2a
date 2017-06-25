@@ -1,0 +1,38 @@
+\lecture{2}{19.04.2017}{Dr. Raphael Kruse}{Frank Rehfeld}
+\textbf{Wiederholung}\\
+\begin{enumerate}
+\item	
+	\begin{equation*}
+		\begin{cases}
+			u\colon\W=\left(a,b\right)\to\R\\
+			\int_{\W}u^{\prime}\left(x\right)v^{\prime}\left(x\right)\,\mathrm{d}x = \int_{\W}f\left(x\right)v\left(x\right)\,\mathrm{d}x\\
+			u\left(a\right)=u\left(b\right)
+		\end{cases}
+	\end{equation*}
+\item{}
+	Eigenschaften $\L^{p}$:\\
+	\begin{itemize}
+		\item $1\leq p <\infty \implies \L^{p}\text{ separabel}$
+		\item $\L^{\infty}$ nicht separabel
+		\item $1 < p <\infty, \frac{1}{p}+\frac{1}{q}=1 \implies \left(\L^{p}\right)^{\prime} \equiv \L^{q}$\\
+			  $T\colon \L^{q}\to\left(\L^{p}\right)^{\prime}, \left(Tg\right)f = \int_{\W}f\left(x\right)g\left(x\right)\,\mathrm{d}x$
+		\item $\left(\L^{1}\right)^{\prime}\equiv\L^{\infty}, \L^{1}\subsetneq\left(\L^{\infty}\right)^{\prime}$\\
+				$\implies \L^{1}, \L^{\infty}$ sind nicht reflexiv
+	\end{itemize}
+\end{enumerate}
+
+\begin{definition}
+	$\L^{1}_{\text{loc}}\left(\W\right) := \left\{u\colon\W\to\R\colon u|_{K}\in\L^{1}\left(K\right)\forall K\subset\W \text{ kompakt}\right\}$\\
+	Raum der lokal integrierbaren Abbildungen
+\end{definition}
+
+\begin{definition}
+	$\C^{\infty}_{\text{c}}\left(\W\right) := \left\{f\colon\W\to\R\colon f\in\C^{\infty},\operatorname{supp}\left(f\right)\subset\W\text{ kompakt}\right\}$\\
+	Raum der unendlich oft differenzierbaren Funktionen mit kompakten Träger\\
+	$\operatorname{supp}\left(f\right):=\left\{x\in\W\colon f\left(x\right)\neq 0\right\}$\\
+	\boldmath$C^{\infty}_{\text{c}}\neq \C^{\infty}_{0}$
+\end{definition}
+
+\begin{expl}
+	$\W=\R^{d},d\in\mathbb{N}$
+\end{expl}

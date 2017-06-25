@@ -21,10 +21,19 @@
 % Theorem style
 %
 \mdfdefinestyle{minimal}{
-leftmargin=1cm,
-linecolor=blue
+topline=false,
+rightline=false,
+bottomline=false,
+leftline=false
 }
 
+\mdfdefinestyle{defi}{
+	topline=false,
+	rightline=false,
+	bottomline=false
+}
+\newmdenv[style=defi,frametitle=Definition]{definition}
+\newmdenv[style=minimal,frametitle=Beispiel]{expl}
 %
 % The following commands set up the lecnum (lecture number)
 % counter and make various numbering schemes work relative
@@ -42,7 +51,7 @@ linecolor=blue
 %
 \newcommand{\lecture}[4]{
    \pagestyle{myheadings}
-   \thispagestyle{plain}
+   %\thispagestyle{plain}
    \newpage
    \setcounter{lecnum}{#1}
    \setcounter{page}{1}
@@ -59,7 +68,7 @@ linecolor=blue
       \vspace{2mm}}
    }
    \end{center}
-   \markboth{Lecture #1: #2}{Lecture #1: #2}
+   \markboth{Vorlesung #1: #2}{Vorlesung #1: #2}
 
    \vspace*{4mm}
 }
@@ -86,13 +95,6 @@ linecolor=blue
             \end{center}
     }
 % Use these for theorems, lemmas, proofs, etc.
-\newtheorem{theorem}{Theorem}[lecnum]
-\newtheorem{lemma}[theorem]{Lemma}
-\newtheorem{proposition}[theorem]{Proposition}
-\newtheorem{claim}[theorem]{Claim}
-\newtheorem{corollary}[theorem]{Corollary}
-\newtheorem{definition}[theorem]{Definition}
-\newenvironment{proof}{{\bf Proof:}}{\hfill\rule{2mm}{2mm}}
 
 % **** IF YOU WANT TO DEFINE ADDITIONAL MACROS FOR YOURSELF, PUT THEM HERE:
 
@@ -113,5 +115,6 @@ linecolor=blue
 
 % **** YOUR NOTES GO HERE:
 \input{lectures/1}
+\input{lectures/2}
 
  \end{document}
