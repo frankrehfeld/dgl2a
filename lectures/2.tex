@@ -64,8 +64,8 @@
 	so folgt $u=0\in\L^{1}_{\text{loc}}$.
 \end{lemma}
 
+\begin{multicols}{2}
 \begin{definition}
-	\textbf{Glättungskerne}\\
 	$J_{\e}\colon\R\to\R, J_{\e}\left(x\right)=\begin{cases}
 		c_{\e}\operatorname{exp}\left(-\frac{\e^{2}}{\e^{2}-x^{2}}\right) &, x\in\left(-\e,\e\right)\\
 		0 &, \text{ sonst}
@@ -79,3 +79,11 @@
 	\end{itemize}
 	$\implies J_{\e}$ ist Wahrscheinlichkeits-Dichte
 \end{definition}
+\begin{tikzpicture}
+	\begin{axis}[scaled ticks=true,xmin=-1.5,xmax=1.5,ymin=0,grid=both]
+		\addplot[domain=-0.99:0.99, smooth] {e^(-1/(1-x^2))/0.444};
+		\addplot[domain=-0.49:0.49, style=dashed, smooth] {e^(-(1/4)/((1/4)-x^2))/0.222};
+		\addplot[domain=-0.24:0.24, style=dotted, smooth] {e^(-(1/16)/((1/16)-x^2))/0.111};
+	\end{axis}
+\end{tikzpicture}
+\end{multicols}
