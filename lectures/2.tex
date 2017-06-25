@@ -2,13 +2,11 @@
 \textbf{Wiederholung}\\
 \begin{enumerate}
 \item	
-	\begin{equation*}
-		\begin{cases}
+	$\begin{cases}
 			u\colon\W=\left(a,b\right)\to\R\\
 			\int_{\W}u^{\prime}\left(x\right)v^{\prime}\left(x\right)\,\mathrm{d}x = \int_{\W}f\left(x\right)v\left(x\right)\,\mathrm{d}x\\
 			u\left(a\right)=u\left(b\right)
-		\end{cases}
-	\end{equation*}
+		\end{cases}$
 \item{}
 	Eigenschaften $\L^{p}$:\\
 	\begin{itemize}
@@ -34,5 +32,50 @@
 \end{definition}
 
 \begin{expl}
-	$\W=\R^{d},d\in\mathbb{N}$
+	$\W=\R^{d},d\in\mathbb{N}$\\
+	Glättungskern $J\left(x\right)=\begin{cases}
+		\operatorname{exp}\left(-\frac{1}{1-|x|^{2}}\right) &, |x| < 1\\
+		0 &, |x| \geq 1
+	\end{cases}$
 \end{expl}
+
+\begin{definition}
+	$u,v\in\L^{1}_{\text{loc}}$. Es gelte
+	\begin{equation*}
+		\int_{\W}u\left(x\right)\phi\left(x\right)\,\mathrm{d}x = -\int_{\W}v\left(x\right)\phi^{\prime}\left(x\right)\,\mathrm{d}x \forall\phi\in\C^{\infty}_{\text{c}}
+	\end{equation*}
+	$u$ heißt schwache Ableitung von $v$, $v$ heißt schwach differenzierbar
+\end{definition}
+
+\textbf{??? Beispiele als Füllmaterial ???}
+
+\textbf{Eigenschaften}:
+\begin{itemize}
+	\item klassisch differenzierbar $\implies$ schwach differenzierbar
+	\item schwache Ableitung ist eindeutig im $\L^{1}$-Sinne
+	\item übliche Eigenschaften (Linearitär,...) bleiben erhalten
+\end{itemize}
+
+\begin{lemma}
+	Sei $u\in\L^{1}_{\text{loc}}$ und
+	\begin{equation*}
+		\int_{\W}u\left(x\right)\phi\left(x\right)\,\mathrm{d}x = 0 \forall\phi\in\C^{\infty}_{\text{c}}
+	\end{equation*}
+	so folgt $u=0\in\L^{1}_{\text{loc}}$.
+\end{lemma}
+
+\begin{definition}
+	\textbf{Glättungskerne}\\
+	$J_{\e}\colon\R\to\R, J_{\e}\left(x\right)=\begin{cases}
+		c_{\e}\operatorname{exp}\left(-\frac{\e^{2}}{\e^{2}-x^{2}}\right) &, x\in\left(-\e,\e\right)\\
+		0 &, \text{ sonst}
+	\end{cases}$\\
+	$c_{\e}:=\left(\int_{\e}^{\e}\operatorname{exp}\left(-\frac{\e^{2}}{\e^{2}-x^{2}}\right)\,\mathrm{d}x\right)^{-1}$
+	$J_{\e}$ ist der Standard-Glättungskern mit Träger $\left[-\e,\e\right]${}
+	\begin{itemize}
+		\item $J_{\e}\in\C^{\infty}_{c}\left(\W\right)$
+		\item $\int_{\R}J_{\e}\left(x\right)\,\mathrm{d}x = 1$
+		\item $J_{\e}\left(x\right)\geq 0 \forall x\in\R$		
+	\end{itemize}
+	$\implies J_{\e}$ ist Wahrscheinlichkeits-Dichte
+\end{definition}

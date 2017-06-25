@@ -21,19 +21,33 @@
 % Theorem style
 %
 \mdfdefinestyle{minimal}{
-topline=false,
-rightline=false,
-bottomline=false,
-leftline=false
+	topline		= false,
+	rightline	= false,
+	bottomline	= false,
+	leftline	= false
 }
 
-\mdfdefinestyle{defi}{
-	topline=false,
-	rightline=false,
-	bottomline=false
+\mdfdefinestyle{left}{
+	topline		=false,
+	rightline	=false,
+	bottomline	=false
 }
-\newmdenv[style=defi,frametitle=Definition]{definition}
+
+\mdfdefinestyle{frame}{
+	topline		= true,
+	rightline	= true,
+	bottomline	= true,
+	leftline	= true,
+	shadow		= false
+}
+
+\newmdenv[style=left,frametitle=Definition]{definition}
 \newmdenv[style=minimal,frametitle=Beispiel]{expl}
+\newmdenv[style=frame,frametitle={\colorbox{white}{\space Lemma\space}},
+    innertopmargin=0pt,
+    frametitleaboveskip=-\ht\strutbox,]{lemma}
+\newmdenv[style=frame,frametitle=Satz]{satz}
+
 %
 % The following commands set up the lecnum (lecture number)
 % counter and make various numbering schemes work relative
@@ -108,6 +122,10 @@ leftline=false
 \def\implies{\Rightarrow}   % Implies
 \def\e{\epsilon}            % Epsilon
 \def\d{\delta}              % Delta
+
+% changed commands
+
+\renewcommand*\labelitemi{\normalfont\bfseries\textendash}
 
 \begin{document}
 %\lecture{**LECTURE-NUMBER**}{**DATE**}{**LECTURER**}{**SCRIBE**}
