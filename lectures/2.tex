@@ -21,12 +21,12 @@
 
 \begin{definition}
 	$\L^{1}_{\text{loc}}\left(\W\right) := \left\{u\colon\W\to\R\colon u|_{K}\in\L^{1}\left(K\right)\forall K\subset\W \text{ kompakt}\right\}$\\
-	Raum der lokal integrierbaren Abbildungen
+	\underline{Raum der lokal integrierbaren Abbildungen}
 \end{definition}
 
 \begin{definition}
 	$\C^{\infty}_{\text{c}}\left(\W\right) := \left\{f\colon\W\to\R\colon f\in\C^{\infty},\operatorname{supp}\left(f\right)\subset\W\text{ kompakt}\right\}$\\
-	Raum der unendlich oft differenzierbaren Funktionen mit kompakten Träger\\
+	\underline{Raum der unendlich oft differenzierbaren Funktionen mit kompakten Träger}\\
 	$\operatorname{supp}\left(f\right):=\left\{x\in\W\colon f\left(x\right)\neq 0\right\}$\\
 	\boldmath$C^{\infty}_{\text{c}}\neq \C^{\infty}_{0}$
 \end{definition}
@@ -44,10 +44,24 @@
 	\begin{equation*}
 		\int_{\W}u\left(x\right)\phi\left(x\right)\,\mathrm{d}x = -\int_{\W}v\left(x\right)\phi^{\prime}\left(x\right)\,\mathrm{d}x \forall\phi\in\C^{\infty}_{\text{c}}
 	\end{equation*}
-	$u$ heißt schwache Ableitung von $v$, $v$ heißt schwach differenzierbar
+	$u$ heißt \underline{schwache Ableitung} von $v$, $v$ heißt \underline{schwach differenzierbar}
 \end{definition}
 
-\textbf{??? Beispiele als Füllmaterial ???}
+\begin{expl}
+	\begin{enumerate}
+		\item{}
+			$u\left(x\right) = |x|$ schwach differenzierbar auf $\left(-1,1\right)$\\
+			$u^{\prime}\left(x\right) = \begin{cases}
+				-1 &, x<0\\
+				1 &, x>0
+			\end{cases}$
+		\item Heaviside-Funktion auf $\W = \left(-1,1\right)$\\
+			$H\colon\W\to\R, x\mapsto\begin{cases}
+				1 &, x>0\\
+				0 &, x\leq 0
+			\end{cases}$ ist nicht schwach differenzierbar
+	\end{enumerate}
+\end{expl}
 
 \textbf{Eigenschaften}:
 \begin{itemize}
@@ -56,7 +70,7 @@
 	\item übliche Eigenschaften (Linearitär,...) bleiben erhalten
 \end{itemize}
 
-\begin{lemma}
+\begin{lemma}[Fundamentallemma der Variationsrechnung]
 	Sei $u\in\L^{1}_{\text{loc}}$ und
 	\begin{equation*}
 		\int_{\W}u\left(x\right)\phi\left(x\right)\,\mathrm{d}x = 0 \forall\phi\in\C^{\infty}_{\text{c}}
@@ -71,7 +85,7 @@
 		0 &, \text{ sonst}
 	\end{cases}$\\
 	$c_{\e}:=\left(\int_{\e}^{\e}\operatorname{exp}\left(-\frac{\e^{2}}{\e^{2}-x^{2}}\right)\,\mathrm{d}x\right)^{-1}$
-	$J_{\e}$ ist der Standard-Glättungskern mit Träger $\left[-\e,\e\right]${}
+	$J_{\e}$ ist der \underline{Standard-Glättungskern} mit Träger $\left[-\e,\e\right]${}
 	\begin{itemize}
 		\item $J_{\e}\in\C^{\infty}_{c}\left(\W\right)$
 		\item $\int_{\R}J_{\e}\left(x\right)\,\mathrm{d}x = 1$
