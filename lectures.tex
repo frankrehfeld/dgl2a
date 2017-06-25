@@ -18,6 +18,7 @@
 \usepackage{cancel}
 \usepackage{pgfplots}
 \usepackage{multicol}
+\usepackage{enumitem}
 
 %
 % Theorem style
@@ -45,10 +46,24 @@
 
 \newmdenv[style=left,frametitle=Definition]{definition}
 \newmdenv[style=minimal,frametitle=Beispiel]{expl}
-\newmdenv[style=frame,frametitle={\colorbox{white}{\space Lemma\space}},
-    innertopmargin=0pt,
-    frametitleaboveskip=-\ht\strutbox,]{lemma}
+%\newmdenv[style=frame,frametitle={\colorbox{white}{\space Lemma\space}},
+%    innertopmargin=0pt,
+%    frametitleaboveskip=-\ht\strutbox,]{lemma}
 \newmdenv[style=frame,frametitle=Satz]{satz}
+\newmdenv[style=minimal,frametitle=Beweis]{proof}
+\newenvironment{lemma}[1][]{%
+  \ifstrempty{#1}%
+  {
+	\mdfsetup{frametitle={\colorbox{white}{\space Lemma\space}};}
+  }
+  {
+	\mdfsetup{frametitle={\colorbox{white}{\space Lemma #1\space}};}
+  }
+  \mdfsetup{style=frame,innertopmargin=0pt,%
+            linewidth=1pt,%
+            frametitleaboveskip=-\ht\strutbox,}
+  \begin{mdframed}[]\relax%
+  }{\end{mdframed}}
 
 %
 % The following commands set up the lecnum (lecture number)
@@ -128,6 +143,7 @@
 % changed commands
 
 \renewcommand*\labelitemi{\normalfont\bfseries\textendash}
+\setlist[itemize]{noitemsep, topsep=-8pt}
 
 \begin{document}
 %\lecture{**LECTURE-NUMBER**}{**DATE**}{**LECTURER**}{**SCRIBE**}
@@ -136,5 +152,6 @@
 % **** YOUR NOTES GO HERE:
 \input{lectures/1}
 \input{lectures/2}
+\input{lectures/3}
 
  \end{document}
