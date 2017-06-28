@@ -1,0 +1,96 @@
+\lecture{3}{25.04.2017}{Dr. Raphael Kruse}{Frank Rehfeld}
+\begin{definition}
+	$u\colon\W=\left(a,b\right)\to\R$ außerhalb von $\W$ mit $0$ fortgesetzt\\
+	$u_{\e}:=\left(J_{\e}\star u\right)\left(x\right) = \int_{\R} J_{\e}\left(x-y\right)u\left(y\right)\,\mathrm{d}y = \int_{\R}J_{\e}\left(y\right)u\left(x-y\right)\,\mathrm{d}y$\\
+	heißt \underline{Glättung} oder \underline{Regularisierung}.
+\end{definition}
+
+\textbf{Eigenschaften}\\
+$u\in\L^{p}\left(\W\right), \W\subset\R \text{ offenes Intervall }, p\in\left[1,\infty\right)$
+\begin{enumerate}
+	\item für $\e > 0$ ist $u_{\e}$ wohldefiniert
+	\item $u_{\e}\in\C^{\infty}\left(\R\right)${}
+	\item $\operatorname{supp}\left(u\right)\subset\W\text{ kompakt},\e\text{ klein genug}\implies u_{\e}\in\C^{\infty}_{\text{c}}$
+	\item $\|u_{\e}\|_{0,p}\leq\|u\|_{0,p}$
+	\item $\|u-u_{e}\|_{0,p}\to 0\text{ für }\e\to 0$
+	\item $u_{e}\left(x\right)\to u\left(x\right)\text{ fast überall }$
+	\item $u\in\C\left(\W\right)\implies\|u-u_{\e}\|_{\infty}\to 0$ auf jeder kompakten Teilmenge
+\end{enumerate}
+
+\begin{lemma}[Fundamentallemma der Variationsrechnung]
+	Sei $u\in\L^{1}_{\text{loc}}$ und
+	\begin{equation*}
+		\int_{\W}u\left(x\right)\phi\left(x\right)\,\mathrm{d}x = 0 \forall\phi\in\C^{\infty}_{\text{c}}
+	\end{equation*}
+	so folgt $u=0\in\L^{1}_{\text{loc}}$.
+\end{lemma}
+\begin{proof}
+	Sei $K\subset\W$ beliebig und kompakt und $w=\operatorname{sgn}\left(u\right)\mathbbm{1}_{K}$. Wäre $w\in\C^{\infty}_{\text{c}}\left(\W\right)$, dann würde gelten
+	\begin{equation*}
+		0 = \int_{\W}uw = \int_{\W}|u| \implies u=0\text{.}
+	\end{equation*}
+	Im Allgemeinen ist $w$ jedoch nicht glatt und wir müssen den Übergang zu $w_{\e}$ vollziehen. Wähle hierfür $\e_{0}<\operatorname{dist}\left(K,\partial\W\right)$. Es gilt $w_{\e}\in\C^{\infty}_{\text{c}}\forall\e\in\left(0,\e_{0}\right)$ da $\operatorname{supp}\left(w\right)$ kompakt.
+	Somit gilt
+	\begin{equation*}
+		\int_{\W}uw_{\e} = 0\forall\e\in\left(0,\e_{0}\right)
+	\end{equation*}
+	und somit $\left(uw_{\e}\right)\left(x\right)\to |u\left(x\right)|$ fast überall.\\
+	Weiterhin gilt $\forall x\in\W$
+	\begin{align*}
+		|u\left(x\right)w_{\e}\left(x\right)| &= |u\left(x\right)||\int_{\R}J_{\e}\left(x-y\right)w\left(y\right)\,\mathrm{d}y|\\
+			&\leq |u\left(x\right)|\int_{\R}J_{\e}\left(x-y\right)\underbrace{|w\left(y\right)|}_{\leq 1}\,\mathrm{d}y\\
+			&\leq |u\left(x\right)|
+	\end{align*}
+	Somit hat $|u\left(x\right)|\mathbbm{1}_{\operatorname{supp}\left(w_{\e_{0}}\right)}$ kompakten Träger und ist Majorante für $uw_{\e}$. Es folgt
+	\begin{align*}
+		0 &= \lim_{\e\to 0}\int_{\R}u\left(x\right)w_{\e}\left(x\right)\,\mathrm{d}x = \int_{\R}\lim_{\e\to 0}u\left(x\right)w_{\e}\left(x\right)\,\mathrm{d}x\\
+			&= \int_{\W}u\left(x\right)w\left(x\right)\,\mathrm{d}x = \int_{\W}|u\left(x\right)|\,\mathrm{d}x\text{.}
+	\end{align*}
+	Somit folgt $u=0$ auf $K$.
+\end{proof}
+\begin{proof}[der Eigenschaften der Glättung]
+	\begin{enumerate}
+		\item Übung
+		\item Übung
+		\item $1=\frac{1}{p} + \frac{1}{q}, p\in\left[1,\infty\right], x\in\R$
+			\begin{align*}
+				|u_{\e}\left(x\right)| &\leq \int_{\R}J_{\e}\left(x-y\right)^{\frac{1}{p}+{1}{q}}|u\left(y\right)|\,\mathrm{d}y\\
+					&\overset{\mathclap{\text{Hölder}}}{\leq} \hspace*{1em} \underbrace{\left(\int_{\R}J_{\e}\left(x-y\right)\,\mathrm{d}y\right)^{\frac{1}{q}}}_{=1} \left(\int_{\R}J_{\e}\left(x-y\right)|u\left(y\right)|^{p}\,\mathrm{d}y\right)^{\frac{1}{p}}\\
+				\implies\|u_{\e}\|^{p}_{0,p} &= \int_{\W}|u_{\e}\left(x\right)|^{p}\,\mathrm{d}x \leq \int_{\R}|u_{\e}\left(x\right)|^{p}\,\mathrm{d}x\\
+					&\leq \int_{R}\int_{\R}J_{\e}\left(x-y\right)|u\left(y\right)|^{p}\,\mathrm{d}y\,\mathrm{d}x\\
+					&\overset{\mathclap{\text{Fubini}}}{=}\hspace*{1em}\int_{\R}|u\left(y\right)|^{p}\underbrace{\int_{\R}J_{\e}\left(x-y\right)\,\mathrm{d}x}_{=1}\,\mathrm{d}y\\
+					&=\int_{\R}|u\left(y\right)|^{p}\,\mathrm{d}y = \int_{\W}|u\left(y\right)|^{p}\,\mathrm{d}y = \|u\|^{p}_{0,p}
+			\end{align*}
+		\item{}
+			\begin{align*}
+				|\left(u_{\e}-u\right)\left(x\right)| &= |\int_{\R}J_{\e}\left(y\right)\left(u\left(x-y\right)-u\left(x\right)\right)\,\mathrm{d}y|\\
+					&\leq \text{... Hölder ...} \leq \left(\int_{\R}J_{\e}\left(y\right)|u\left(x-y\right)-u\left(x\right)|^{p}\,\mathrm{d}y\right)^{\frac{1}{p}}\\
+				\implies \|u_{\e}-u\|_{0,p}^{p} &\leq \int_{\W}\int_{-\e}^{\e}J_{\e}\left(y\right)|u\left(x-y\right)-u\left(x\right)|^{p}\,\mathrm{d}y\,\mathrm{d}x\\
+					&\overset{\mathclap{\text{Fubini}}}{=}\hspace*{1em} \int_{-\e}^{\e}J_{\e}\left(y\right)\int_{\W}|u\left(x-y\right)-u\left(x\right)|^{p}\,\mathrm{d}x\,\mathrm{d}y\\
+					&\leq \operatorname{sup}_{y\in\left[-\e,\e\right]}\int_{\W}|u\left(x-y\right)-u\left(x\right)|^{p}\,\mathrm{d}x
+			\end{align*}
+			Die Behauptung folgt, da $\forall u\in\L^{p}\left(\W\right)$ gilt $\lim_{\e\to 0}\operatorname{sup}_{y\in\left[-\e,\e\right]}\int_{\W}|u\left(x-y\right)-u\left(x\right)|^{p}\,\mathrm{d}x = 0$
+		\item analog
+		\item $u\in\C\left(\W\right), K\subset\W$ kompakt. Wähle $\e_{0}<\operatorname{dist}\left(K,\partial\W\right)$.\\
+			$K_{0} = \left[\operatorname{inf}K-\e_{0},\operatorname{sup}K+e_{0}\right]$ bleibt kompakt und somit $u$ gleichmäßig stetig auf $K_{0}$.\\
+			$\implies \forall\e<\operatorname{min}\left\{\delta,\e_{0}\right\}, x\in K$ gilt
+			\begin{align*}
+				|u_{e}\left(x\right)-u\left(x\right)|&\leq\int_{-\e}^{\e}J_{\e}\left(y\right)\underbrace{|u\left(x-y\right)-u\left(x\right)|}_{\leq\eta}\,\mathrm{d}y\\
+					&\leq \eta\int_{-\e}^{\e}J_{\e}\left(y\right)\,\mathrm{d}y = \eta
+			\end{align*}
+	\end{enumerate}
+\end{proof}
+
+\begin{cor}
+	$u\in\L^{1}_{\text{loc}}\left(\W\right)$ schwach differenzierbar, $v,w$ schwache Ableitungen von $u$. Dann gilt
+	\begin{equation*}
+		v = w \text{ fast überall}
+	\end{equation*}
+\end{cor}
+\begin{lemma}[Satz]
+	$\W=\left(a,b\right),u\in\L^{1}\left(\W\right),u^{\prime}\in\L^{1}\left(\W\right)$ schwache Ableitung von $u$\\
+	$\implies u$ auf $\overbar{\W}$ fast überall gleich einer absolut stetigen Funktion\\
+	\begin{equation*}
+		\|u\|_{\infty} \leq\frac{\operatorname{max}\left(1,b-a\right)}{b-a}\|u\|_{1,1} = \frac{\operatorname{max}\left(1,b-a\right)}{b-a}\left(\|u\|_{0,1}+\|u^{\prime}\|_{0,1}\right)
+	\end{equation*}
+\end{lemma}

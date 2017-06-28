@@ -19,6 +19,7 @@
 \usepackage{pgfplots}
 \usepackage{multicol}
 \usepackage{enumitem}
+\usepackage{bbm}
 
 %
 % Theorem style
@@ -38,26 +39,38 @@
 
 \mdfdefinestyle{frame}{
 	topline		= true,
-	rightline	= true,
+	rightline	= false,
 	bottomline	= true,
-	leftline	= true,
+	leftline	= false,
 	shadow		= false
 }
 
 \newmdenv[style=left,frametitle=Definition]{definition}
 \newmdenv[style=minimal,frametitle=Beispiel]{expl}
-%\newmdenv[style=frame,frametitle={\colorbox{white}{\space Lemma\space}},
-%    innertopmargin=0pt,
-%    frametitleaboveskip=-\ht\strutbox,]{lemma}
-\newmdenv[style=frame,frametitle=Satz]{satz}
-\newmdenv[style=minimal,frametitle=Beweis]{proof}
+\newmdenv[style=frame,frametitle={\colorbox{white}{\space Korollar\space}},
+    innertopmargin=0pt,
+    frametitleaboveskip=-\ht\strutbox,]{cor}
+\newenvironment{proof}[1][]{%
+  \ifstrempty{#1}%
+  {
+	\mdfsetup{frametitle={\colorbox{white}{\space Beweis\space}}}
+  }
+  {
+	\mdfsetup{frametitle={\colorbox{white}{\space Beweis #1\space}}}
+  }
+  \mdfsetup{style=minimal,innertopmargin=0pt,%
+            linewidth=1pt,%
+            frametitleaboveskip=-\ht\strutbox,}
+  \begin{mdframed}[]\relax%
+  }{\end{mdframed}}
+\AtEndEnvironment{proof}{\hfill$\square$}
 \newenvironment{lemma}[1][]{%
   \ifstrempty{#1}%
   {
-	\mdfsetup{frametitle={\colorbox{white}{\space Lemma\space}};}
+	\mdfsetup{frametitle={\colorbox{white}{\space Lemma\space}}}
   }
   {
-	\mdfsetup{frametitle={\colorbox{white}{\space Lemma #1\space}};}
+	\mdfsetup{frametitle={\colorbox{white}{\space #1\space}}}
   }
   \mdfsetup{style=frame,innertopmargin=0pt,%
             linewidth=1pt,%
@@ -140,10 +153,18 @@
 \def\e{\epsilon}            % Epsilon
 \def\d{\delta}              % Delta
 
+\newcommand{\overbar}[1]{\mkern 1.5mu\overline{\mkern-1.5mu#1\mkern-1.5mu}\mkern 1.5mu}
+
 % changed commands
 
 \renewcommand*\labelitemi{\normalfont\bfseries\textendash}
-\setlist[itemize]{noitemsep, topsep=-8pt}
+\setlist[itemize]{noitemsep, topsep=0pt}
+\setlist[enumerate]{noitemsep, topsep=0pt}
+\setlength{\parskip}{0pt}
+\setlength{\abovedisplayskip}{0pt}
+\setlength{\belowdisplayskip}{0pt}
+\setlength{\abovedisplayshortskip}{0pt}
+\setlength{\belowdisplayshortskip}{0pt}
 
 \begin{document}
 %\lecture{**LECTURE-NUMBER**}{**DATE**}{**LECTURER**}{**SCRIBE**}
