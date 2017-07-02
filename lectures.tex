@@ -73,7 +73,6 @@
 	\mdfsetup{frametitle={\colorbox{white}{\space #1\space}}}
   }
   \mdfsetup{style=frame,innertopmargin=0pt,%
-            linewidth=1pt,%
             frametitleaboveskip=-\ht\strutbox,}
   \begin{mdframed}[]\relax%
   }{\end{mdframed}}
@@ -147,11 +146,12 @@
 \def\W{\Omega}          	% Capital omega
 \def\w{\omega}          	% Lowercase omega
 \def\L{\mathrm{L}}	     	% Lebesgue-integrable functions
+\def\H{\mathrm{H}}
 \def\esssup{\text{ess sup}} % Essential supremum
 \def\iff{\Leftrightarrow}   % If and only if
 \def\implies{\Rightarrow}   % Implies
 \def\e{\epsilon}            % Epsilon
-\def\d{\delta}              % Delta
+\def\d{\,\mathrm{d}}        % Delta
 
 \newcommand{\overbar}[1]{\mkern 1.5mu\overline{\mkern-1.5mu#1\mkern-1.5mu}\mkern 1.5mu}
 
@@ -174,5 +174,6 @@
 \input{lectures/1}
 \input{lectures/2}
 \input{lectures/3}
+\input{lectures/4}
 
  \end{document}

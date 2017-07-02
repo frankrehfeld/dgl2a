@@ -1,0 +1,84 @@
+\lecture{3}{26.04.2017}{Dr. Raphael Kruse}{Frank Rehfeld}
+\begin{proof}
+	\begin{equation*}
+		v\left(x\right) = \int_{a}^{x}u^{\prime}\left(y\right)\,\mathrm{d}y
+	\end{equation*}
+	mit $u\in\L^{1}\left(\W\right)$. Somit ist $v$ absolut stetig für klassisch differenzierbare $u$ mit $u^{prime}=v^{\prime}$
+	\begin{align*}
+		\int_{\W}v\left(x\right)\phi\left(x\right)\,\mathrm{d}x &= -\int_{\W}v^{\prime}\left(x\right)\phi\left(x\right)\,\mathrm{d}x \\
+			&= -\int_{\W}u^{\prime}\left(x\right)\phi\left(x\right)\,\mathrm{d}x = \int_{\W}u\left(x\right)\phi\left(x\right)\,\mathrm{d}x
+	\end{align*}
+	Mit dem vorigen Korrolar erhält man somit
+	\begin{equation*}
+		\exists c\in\R \colon u\left(x\right) = v\left(x\right) + c \text{ fast überall in } \W
+	\end{equation*}
+	Mit dem Mittelwertsatz erhält man 
+	\begin{align*}
+		\implies \exists x_{0}&\in\left[a,b\right] = \overbar{\W} \colon \int_{a}^{b}u\left(\xi\right)\,\mathrm{d}\xi = \left(b-a\right)u\left(x_{0}\right)\\
+		\implies u\left(x\right) &= u\left(x_{0}\right) + \int_{x_{0}}^{x}u^{\prime}\left(\xi\right)\d\xi\\
+			&= \frac{1}{b-a}\int_{a}^{b}u\left(\xi\right)\d\xi + \int_{x_{0}}^{x}u^{\prime}\left(\xi\right)\d\xi\\
+		\implies \|u\|_{\infty} &\leq \frac{\operatorname{max}\left(1,b-a\right)}{b-a}\left(\|u\|_{0,1}+\|u^{\prime}\|_{0,1}\right)
+	\end{align*}
+\end{proof}
+
+\begin{itemize}
+	\item \textbf{Dieser Satz gilt nur im Eindimensionalen!}\\
+	\item \textbf{Fast überall gleich einer absolut stetigen Funktion $\neq$ Fast überall absolut stetig}
+\end{itemize}
+
+\begin{definition}
+	$u,v\in\L^{1}_{\text{loc}}\left(\W\right), n\in\mathbb{N}, v n$-te schwache Ableitung von $u$
+	\begin{equation*}
+		\int_{\W} v\left(x\right)\phi\left(x\right)\d x = \left(-1\right)^{n} \int_{\W} u\left(x\right)\phi^{\left(n\right)}\left(x\right)\d x \forall \phi\in\C^{\infty}_{\text{c}}\left(\W\right)
+	\end{equation*}
+	\textbf{Im höherdimensionalen ist das Fehlen von Ableitungen niedrigerer Ordnung möglich.}
+\end{definition}
+
+\begin{lemma}[Satz]
+	$u\in\L^{1}\left(\W\right), n\in\mathbb{N},\W=\left(a,b\right)$\\
+	$\exists n$-te schwache Ableitung $u^{\left(n\right)}\in\L^{1}\left(\W\right) \implies \exists k$-te schwache Ableitung für $k=1,\dots,n-1$ und $u^{\left(k\right)}$ ist fast überall gleich einer absolut stetigen Funktion.
+\end{lemma}
+\begin{proof}
+	$v_{n-1}\left(x\right) = \int_{a}^{x}u^{\left(n\right)}\left(y\right)\d y$ und somit ist $v_{n-1}$ absolut stetig und damit $v_{n-1}^{\prime} = u^{\left(n\right)}$ fast überall gleich einer absolut stetigen Funktion.\\
+	Rekursiv erhält man $v_{k-1}\left(x\right) = \int_{a}^{x}v_{k}\left(y\right)\d y \implies v_{k-1}$ absolut stetig und somit $v_{k-1}^{\prime} = v_{k}$ fast überall gleich einer absolut stetigen Funktion.\\
+	Und somit:
+	\begin{align*}
+		\left(-1\right)^{n}\int_{a}^{b}u\left(x\right)\phi^{\left(n\right)}\left(x\right)\d x &= \int_{a}^{b}u^{\left(n\right)}\left(x\right)\phi\left(x\right)\d x\\
+			&= \int_{a}^{b} v_{n-1}^{\prime}\left(x\right)\phi\left(x\right)\d x\\
+			&= \dots = \left(-1\right)^{n}\int_{a}^{b}v_{0}\left(x\right)\phi^{\left(n\right)}\left(x\right)\d x
+	\end{align*}
+	Außerdem lässt sich das Korollar verallgemeinern
+	\begin{equation*}
+		\int_{\W}w\phi^{\left(n\right)}\d x = 0 \forall \phi\in\C_{\text{c}}^{\infty}\left(\W\right) \implies w\left(x\right) = p\left(x\right) \text{ fast überall }, p\in\mathrm{P}_{n-1}\left[x\right]
+	\end{equation*}
+	Und somit $u\left(x\right) = v_{0}\left(x\right) + p\left(x\right)$ ist fast überall gleich einer absolut stetigen Funktion. Da $u^{\prime}$ existiert (im klassischen Sinne falls $n\geq 2$) ist $u^{\prime}$ absolut stetig. Diese Erkenntnis kann iteriert werden.
+\end{proof}
+
+\section{Die Sobolew-Räume $\H^{1}\left(\W\right), \H^{1}_{0}\left(\W\right), \H^{-1}\left(\W\right)$}
+\begin{definition}
+	\begin{equation*}
+		W^{k,p}\left(\W\right):=\left(u\in\L^{p}\colon\exists u^{\left(k\right)}\in\L^{p}\right)
+	\end{equation*}
+	ist mit
+	\begin{equation*}
+		\|u\|_{k,p} = \left(\sum_{j=0}^{k}\|u^{\left(j\right)}\|_{0,p}^{p}\right)^{\frac{1}{p}}
+	\end{equation*}
+	ein Banachraum, genannt Sobolewraum.
+\end{definition}
+\begin{definition}
+	\begin{equation*}
+		W^{1,2}\left(\W\right) = \H^{1}\left(\W\right)
+	\end{equation*}
+	ist ein Hilbertraum.
+\end{definition}
+
+\begin{lemma}[Satz]
+	\begin{equation*}
+		\|u\|_{1,2} = \left(u,u\right)_{1,2}^{\frac{1}{2}}
+	\end{equation*}
+	mit
+	\begin{equation*}
+		\left(u,v\right)_{1,2} = \left(u,v\right)_{0,2} + \left(u^{\prime},v^{\prime}\right)_{0,2} = \int uv+u^{\prime}v^{\prime}\d x
+	\end{equation*}
+	definiert eine Norm, bzw ein Skalarprodukt. $\left(H^{1}\left(\W\right),\|\cdot\|_{1,2},\left(\cdot,\cdot\right)_{1,2}\right)$ ist ein separabler Hilbertraum.
+\end{lemma}
