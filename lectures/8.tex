@@ -1,0 +1,71 @@
+\lecture{8}{10.05.2017}{Dr. Raphael Kruse}{Frank Rehfeld}
+\underline{Randbedingungen}
+\begin{enumerate}
+	\item Dirichlet: $u\left(a\right)=\alpha, u\left(b\right)=\beta${}
+	\item Neumann: $u^{\prime}\left(a\right)=\alpha, u^{\prime}\left(b\right)=\beta${}
+	\item Robin: $c_{a}u\left(a\right) + u^{\prime}\left(a\right) = \alpha, c_{b}u\left(b\right)+u^{\prime}\left(b\right)=\beta${}
+	\item periodisch: $u\left(a\right)=u\left(b\right), u^{\prime}\left(a\right)=u^{\prime}\left(b\right)$
+\end{enumerate}
+
+Inhomogene Dirichlet-Randbedingungen führen zu Problemen, da die Lösung $u\notin\H^{1}_{0}\left(\W\right)$. Es wird ein neuer Ansatzraum kreiert
+\begin{align*}
+	\H_{\alpha,\beta}\left(\W\right) :&= \left\{u\in\H^{1}\left(\W\right)\colon u\left(a\right)=\alpha, u\left(b\right)=\beta\right\}\\
+		&= g+\H^{1}_{0}\left(\W\right), g\in\H^{1}\left(\W\right)\colon g\left(a\right)=\alpha, g\left(b\right)=\beta
+\end{align*}
+Es ergibt sich somit ein erstes variationelles Problem
+\begin{equation*}
+	\left(V_{1}\right) = \begin{cases}
+		\text{Finde }u\in\H_{\alpha,\beta}\\
+		a\left(u,v\right) = \left<f,v\right> \forall v\in\H^{1}_{0}\left(\W\right)
+	\end{cases}
+\end{equation*}
+oder die alternative Form
+\begin{equation*}
+	\left(V_{2}\right) = \begin{cases}
+		\text{Finde }u_{0}\in\H^{1}_{0}\\
+		a\left(u_{0},v\right) = \left<f,v\right>-a\left(g,v\right) = \left<\tilde{f},v\right> \forall v\in\H^{1}_{0}\left(\W\right)
+	\end{cases}
+\end{equation*}
+Die inhomogenen Dirichlet-Randbedingungen werden auch wesentliche Randbedingungen genannt, da sie die Wahl des Ansatzraums beeinflussen.
+
+Bei Neumann-Randbedingungen ergibt sich als Ansatz- und Testraum der Raum $H^{1}\left(\W\right)$. Betrachte das Problem
+\begin{equation*}
+	\left(P_{\text{Neu}}\right)\begin{cases}
+		\text{Finde } u\in\C^{1}\left(\overbar{\W}\right)\cap\C^{2}\left(\W\right)\\
+		-u^{\prime\prime}\left(x\right) = f\left(x\right) \forall x\in\W\\
+		u^{\prime}\left(a\right) = \alpha, u^{\prime}\left(b\right) = \beta
+	\end{cases}
+\end{equation*}
+Dieses Problem ist klassisch nicht eindeutig lösbar sondern nur bis auf eine Konstante. Es ist also eine weitere Bedingung ($\int_{\W}u\d x = 0$)nötig.
+Die Überführung in die variationelle Formulierung ergibt das Problem
+\begin{equation*}
+	\left(V_{\text{Neu}}\right) \begin{cases}
+		\text{Finde } u\in\H^{1}\left(\W\right)\\
+		a\left(u,v\right) = \int_{\W}u^{\prime}\left(x\right)v^{\prime}\left(x\right)\d x = \left(\alpha v\left(a\right)-\beta v\left(b\right)\right) + \left(f,v\right)_{0,2} \forall v\in\H^{1}\left(\W\right)
+	\end{cases}
+\end{equation*}
+Die Neumann-Randbedingungen werden auch natürliche Randbedingungen genannt, da sie den größtmöglichen Ansatzraum $H^{1}\left(\W\right)$ erlauben.
+
+Insgesamt ergibt sich das abstrakte variationelle Problem
+\begin{equation*}
+	\left(V\right)\begin{cases}
+		\text{Finde }u\in V\\
+		a\left(u,v\right) = \left<f,v\right> \forall v\in V
+	\end{cases}
+\end{equation*}
+Hierbei ist 
+\begin{itemize}
+	\item $\left(V,\|\cdot\|_{V}\right)$ ein reeller Banachraum
+	\item $a\colon V\times V\to\R$ linear und beschränkt im zweiten Argument ($a\left(u,\cdot\right)\in V^{\prime}$)
+	\item $A\colon V \to V^{\prime}, u\mapsto a\left(u,\cdot\right)$ der zu $a$ assoziierte Operator
+\end{itemize}
+Es ergibt sich somit das Operator-Problem
+\begin{equation*}
+	\left(O\right) \begin{cases}
+		\text{Finde }u\in V \text{ zu } f\in V^{\prime}\\
+		A\left[u\right] = f
+	\end{cases}
+\end{equation*}
+\begin{lemma}
+	$\left(V\right)$ und $\left(O\right)$ sind äquivalent.
+\end{lemma}

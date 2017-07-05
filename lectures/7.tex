@@ -1,0 +1,65 @@
+\lecture{7}{09.05.2017}{Dr. Raphael Kruse}{Frank Rehfeld}
+\begin{proof}[der Charakterisierung von $\H^{-1}\left(\W\right)$]
+	Eine Richtung wurde in der Definition schon skizziert.
+	
+	Sei $u\in\H^{1}\left(\W\right)$ mit $u\left(a\right)=u\left(b\right)=0$. Weiterhin sei $\delta\in\left(0,\frac{b-a}{5}\right)$.
+	Wähle nun $\Psi_{\delta}\in\C^{\infty}_{\text{c}}\left(\W\right)$ so, dass
+	%\begin{multicols}{2}
+	\begin{enumerate}
+		\item $0\leq\Psi_{\delta}\leq 1$ in $\W$
+		\item $|\Psi_{\delta}^{\prime}|\leq\frac{c}{\delta}$ für $c>0$
+		\item $\Psi_{\delta}\left(x\right) = \begin{cases}
+			0 &, x\in\left[a,a+\delta\right]\cup\left[b-\delta,b\right]\\
+			1 &, x\in\left[a+2\delta,b-2\delta\right]
+		\end{cases}$
+	\end{enumerate}
+	%\begin{tikzpicture}
+	%	\centering
+	%	\begin{axis}[xmin=-2,xmax=1,ymin=0,ymax=1.5,grid=both,xticklabels={},yticklabels={}]
+	%		\addplot[domain=-1:0, smooth] {1};
+	%		\addplot[domain=-1.5:-1.01, smooth] {e^(-(1/4)/((1/4)-(x+1)^2))/0.37};
+	%		\addplot[domain=0.01:0.5, smooth] {e^(-(1/4)/((1/4)-(x)^2))/0.37};
+	%	\end{axis}
+	%\end{tikzpicture}
+	%\end{multicols}
+	So ein $\Psi_{\delta}$ existiert, z.B. $\Psi_{\delta}\left(x\right)=\int_{a+\delta}^{x}J_{\delta/2}\left(y-\left(a+\frac{3}{2}\delta\right)\right)\d y$ auf $\left[a+\delta,a+2\delta\right]$.{}
+	
+	Setze nun
+	\begin{align*}
+		v := u\Psi_{\delta} &\implies \operatorname{supp}\left(v\right) \subset \left[a+\delta,b-\delta\right]\\
+			&\implies v\in\H^{1}\left(\W\right)
+	\end{align*}
+	Setzt man nun $v$ außerhalb von $\W$ konstant $0$ fort, so erhält man sogar $v\in\H^{1}\left(\R\right)$.{}
+	
+	\textbf{TODO}
+\end{proof}
+
+\section{Variationelle Formulierung von Randwertproblemen und abstrakte Operatorgleichungen}
+Gegeben ist das Randwertproblem
+\begin{equation*}
+	\left(P_{\text{Dir}}\right) \begin{cases}
+		\text{Finde } u\in\C\left(\overbar{\W}\right)\cup\C^{2}\left(\W\right)\\
+		-u^{\prime\prime}\left(x\right) + c\left(x\right)u^{\prime}\left(x\right) + d\left(x\right)u\left(x\right) = f\left(x\right) \text{ in } \W\\
+		u\left(a\right)=u\left(b\right) = 0
+	\end{cases}
+\end{equation*}
+Zur Überführung von $P_{\text{Dir}}$ in eine variationelle (schwache) Formulierung führen wir folgende Schritte durch
+\begin{enumerate}
+	\item Multiplikation der DGL mit hinreichend glatter Testfunktion $v$
+	\item Integration des Produkts über $\W${}
+	\item Term zweiter Ordnung einmal partiell integrieren
+	\item Ableitungen im schwachen Sinne interpretieren
+\end{enumerate}
+
+Es ergibt sich
+\begin{equation*}
+	\left(V_{\text{Dir}}\right) = \begin{cases}
+		\text{Finde } u\in\H^{1}_{0}\left(\W\right) \rightarrow \text{(Ansatzraum)}\\
+		\int_{\W}\left(u^{\prime}v^{\prime}+cu^{\prime}v+duv\right)\d x = \int_{\W}fv\d x \forall v\in\H^{1}_{0}\left(\W\right) \rightarrow \text{(Testraum)}
+	\end{cases}
+\end{equation*}
+Für eine sinnvolle Definition ist nötig $c,d\in\L^{\infty}\left(\W\right),f\in\H^{-1}\left(\W\right)$.{}
+
+\begin{definition}
+	Die Lösung $u\in\H^{1}_{0}\left(\W\right)$ des variationellen Problems $V_{\text{Dir}}$ wird \textbf{schwache Lösung} von $P_{\text{Dir}}$ genannt.
+\end{definition}
