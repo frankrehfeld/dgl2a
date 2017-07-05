@@ -1,4 +1,4 @@
-\lecture{3}{26.04.2017}{Dr. Raphael Kruse}{Frank Rehfeld}
+\lecture{4}{26.04.2017}{Dr. Raphael Kruse}{Frank Rehfeld}
 \begin{proof}
 	\begin{equation*}
 		v\left(x\right) = \int_{a}^{x}u^{\prime}\left(y\right)\,\mathrm{d}y
@@ -61,7 +61,7 @@
 	\end{equation*}
 	ist mit
 	\begin{equation*}
-		\|u\|_{k,p} = \left(\sum_{j=0}^{k}\|u^{\left(j\right)}\|_{0,p}^{p}\right)^{\frac{1}{p}}
+		\|u\|_{k,p} = \left(\sum_{j=0}^{k}\|u^{\left(j\right)}\|_{0,p}^{p}\right)^{1/p}
 	\end{equation*}
 	ein Banachraum, genannt Sobolewraum.
 \end{definition}
@@ -74,7 +74,7 @@
 
 \begin{lemma}[Satz]
 	\begin{equation*}
-		\|u\|_{1,2} = \left(u,u\right)_{1,2}^{\frac{1}{2}}
+		\|u\|_{1,2} = \left(u,u\right)_{1,2}^{1/2}
 	\end{equation*}
 	mit
 	\begin{equation*}
@@ -82,3 +82,24 @@
 	\end{equation*}
 	definiert eine Norm, bzw ein Skalarprodukt. $\left(H^{1}\left(\W\right),\|\cdot\|_{1,2},\left(\cdot,\cdot\right)_{1,2}\right)$ ist ein separabler Hilbertraum.
 \end{lemma}
+\begin{proof}
+	\underline{Vollständigkeit}\\
+	Sei $\left(u_{n}\right)_{n\in\N}$ eine Cauchy-Folge in $H^{1}$. Es gilt also:
+	\begin{align*}
+		u_{n}&\to u\\
+		u^{\prime}_{n} &\to v
+	\end{align*}
+	in $\L^{2}$. Da $\W$ beschränkt ist gilt:
+	\begin{equation*}
+		\|u_{n}-u\|_{0,1} = \int_{\W}|u_{n}-u|\d x = \int_{W}1|u_{n}-u|\d x \overset{\mathclap{\text{C-S}}}{\leq} \int_{\W} 1\d x \|u_{n}-u\|_{0,2}
+	\end{equation*}
+	Mit einer Hausaufgabe folgt, dass $u$ schwach differenzierbar ist und $u^{\prime}=v$. Somit ist $u\in\H^{1}\left(\W\right)$.\\
+	\underline{Separabilität}\\
+	Sei $X=\L^{2}\left(\W\right)\times\L^{2}\left(\W\right), T\colon \H^{1}\left(\W\right)\to X, u\mapsto Tu=\left(u,u^{\prime}\right)$.\\
+	$T$ ist wohldefiniert, linear und isometrisch. Also ist $T$ injektiv. Somit ergibt sich, dass $T\left(\H^{1}\left(\W\right)\right)\subset X$ ein Unterraum ist. Also $H^{1}\left(\W\right)\cong T\left(\H^{1}\left(\W\right)\right)$. Es folgt somit aus $\H^{1}\left(\W\right)$ vollständig, dass $T\left(\H^{1}\left(\W\right)\right)$ abgeschlossen in $X$ ist. Somit gilt:
+	\begin{align*}
+		\L^{2}\left(\W\right)\text{ separabel } &\implies X\text{ separabel}\\
+			&\implies T\left(\H^{1}\left(\W\right)\right)\text{ separabel, da abgeschlossen}\\
+			&\implies \H^{1}\left(\W\right)\text{ separabel}
+	\end{align*}
+\end{proof}
