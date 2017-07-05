@@ -63,6 +63,21 @@
             frametitleaboveskip=-\ht\strutbox,}
   \begin{mdframed}[]\relax%
   }{\end{mdframed}}
+  
+%incomplete proof
+\newenvironment{prf}[1][]{%
+  \ifstrempty{#1}%
+  {
+	\mdfsetup{frametitle={\colorbox{white}{\space Beweis\space}}}
+  }
+  {
+	\mdfsetup{frametitle={\colorbox{white}{\space Beweis #1\space}}}
+  }
+  \mdfsetup{style=minimal,innertopmargin=0pt,%
+            linewidth=1pt,%
+            frametitleaboveskip=-\ht\strutbox,}
+  \begin{mdframed}[]\relax%
+  }{\end{mdframed}}
 \AtEndEnvironment{proof}{\hfill$\square$}
 \newenvironment{lemma}[1][]{%
   \ifstrempty{#1}%
@@ -142,6 +157,7 @@
 % **** IF YOU WANT TO DEFINE ADDITIONAL MACROS FOR YOURSELF, PUT THEM HERE:
 
 \def\R{\mathbb{R}}      	% The reals
+\def\N{\mathbb{N}}
 \def\C{\mathcal{C}}     	% continuous functions
 \def\W{\Omega}          	% Capital omega
 \def\w{\omega}          	% Lowercase omega
@@ -152,6 +168,8 @@
 \def\implies{\Rightarrow}   % Implies
 \def\e{\epsilon}            % Epsilon
 \def\d{\,\mathrm{d}}        % Delta
+\def\cembed{\overset{\mathclap{\text{c}}}{\hookrightarrow}}
+\def\dembed{\overset{\mathclap{\text{d}}}{\hookrightarrow}}
 
 \newcommand{\overbar}[1]{\mkern 1.5mu\overline{\mkern-1.5mu#1\mkern-1.5mu}\mkern 1.5mu}
 
@@ -175,5 +193,6 @@
 \input{lectures/2}
 \input{lectures/3}
 \input{lectures/4}
+\input{lectures/5}
 
  \end{document}
