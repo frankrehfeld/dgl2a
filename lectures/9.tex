@@ -1,0 +1,67 @@
+\lecture{9}{16.05.2017}{Dr. Raphael Kruse}{Frank Rehfeld}
+\section{Lineare Variationsprobleme mit stark positiver Bilinearform}
+\begin{definition}
+	Sei $\left(V,\|\cdot\|_{V}\right)$ ein reeller Banachraum, $a\colon V\times V\to\R, A\colon V\to V^{\prime}$ der assoziierte Operator.
+	\begin{itemize}
+		\item $a$ ist \textbf{bilinear}, wenn es linear in beiden Eingängen ist.
+		\item $a$ bzw $A$ ist \textbf{symmetrisch}, wenn gilt $a\left(v,u\right) = a\left(u,v\right)$ bzw $\left<Av,u\right>=\left<Au,v\right>$.{}
+		\item $a$ bzw $A$ ist \textbf{positiv}, wenn gilt $a\left(u,u\right)\geq 0$ bzw $\left<Au,u\right>\geq 0$
+		\item $a$ bzw $A$ ist \textbf{stark positiv}, wenn gilt $a\left(u,u\right) > 0$ bzw $\left<Au,u\right> > 0$
+		\item $a$ ist \textbf{beschränkt}, wenn gilt: $\exists\beta >0\colon |a\left(u,v\right)|\leq\beta\|u\|_{V}\|v\|_{V}$
+		\item $A$ ist \textbf{beschränkt}, wenn es beschränkte Mengen auf beschränkte Mengen abbildet.
+	\end{itemize}
+\end{definition}
+
+\begin{lemma}
+	Sei $\left(V,\|\cdot\|_{V}\right)$ ein reeller Banachraum, $a\colon V\times V\to\R$ und $A\colon V\to V^{\prime}$ der assoziierte Operator.
+	Es gilt
+	\begin{itemize}
+		\item $A$ linear $\Leftrightarrow a$ bilinear
+		\item $A$ symmetrisch $\Leftrightarrow a$ symmetrisch
+		\item Sei $a$ bilinear. $A$ beschränkt $\Leftrightarrow a$ beschränkt
+		\item $A$ stark positiv $\Leftrightarrow a$ stark positiv
+	\end{itemize}
+\end{lemma}
+
+\begin{definition}
+	Sei $a\colon V\times V\to\R$ eine symmetrische, stark positive Bilinearform, $V$ Hilbertraum, $f\in V^{\prime}$. 
+	\begin{align*}
+		J\colon V &\to\R \\
+			v &\mapsto J\left[v\right] := \frac{1}{2}a\left(v,v\right) - \left<f,v\right>
+	\end{align*}
+	heißt \textbf{Energiefunktional}.
+\end{definition}
+
+\begin{lemma}[Satz von Lax-Milgram]
+	Sei $\left(V,\left(\cdot,\cdot\right),\|\cdot\|_{V}\right)$ ein reeller Hilbertraum, $a\colon V\times V\to\R$ eine beschränkte, stark positive Bilinearform.
+	Dann besitzt das Variationsproblem $\left(V\right)$ für alle $f\in V^{\prime}$ eine eindeutige Lösung.
+	
+	\textbf{Es wird keine Symmetrie von $a$ gefordert.}
+\end{lemma}
+\begin{proof}
+	\begin{enumerate}
+		\item Da $a$ beschränkt ist, ist $A\colon V\to V^{\prime}$ ein lineares, stark positives Funktional.
+		\item Mit dem Rieszschen Darstellungssatz gilt $V\simeq V^{\prime}$ mit $I\colon V^{\prime}\to V$.
+		\item Sei $u_{0}\in V, \tau\in\left(0,\infty\right)$ beliebig. Wir definieren die Folge
+			\begin{equation*}
+				u^{\left(n+1\right)} = u^{\left(n\right)} + \tau I\left(f-Au^{\left(n\right)}\right) = \Phi\left(u^{\left(n\right)}\right)
+			\end{equation*}
+		\item $\Phi\left(u\right) = u \Leftrightarrow u = u + \tau I\left(f-Au\right)${}
+		\item Seien $v,w\in V$ beliebig. Dann gilt
+			\begin{align*}
+				\|\Phi\left(u\right)-\Phi\left(v\right)\|_{V}^{2} &= \|v-w-\tau IA\left(v-w\right)\|_{V}^{2}\\
+					&= \|v-w\|_{V}^{2} - 2\tau\left(v-w,IA\left(v-w\right)\right)_{V} + \tau^{2}\|IA\left(v-w\right)\|_{V}^{2}\\
+					&= \|v-w\|_{V}^{2} - 2\tau\left<A\left(v-w\right),v-w\right> + \tau^{2}\|A\left(v-w\right)\|_{V}^{2}\\
+					&\leq \|v-w\|_{V}^{2} - 2\tau \underbrace{a\left(v-w,v-w\right)}_{\geq \mu\|v-w\|_{V}^{2}} + \tau^{2}\beta^{2}\|v-w\|_{V}^{2}\\
+					&\leq \left(1-2\tau\mu + \tau^{2}\beta^{2}\right)\|v-w\|_{V}^{2}
+			\end{align*}
+			Für $\tau\in\left(0,\frac{2\mu}{\beta^{2}}\right)$ gilt $\Phi$ ist eine Kontraktion und besitzt somit mit dem Banachschen Fixpunktsatz einen Fixpunkt.
+	\end{enumerate}
+\end{proof}
+
+\begin{lemma}[Korollar]
+	Unter den Voraussetzungen von Lax-Milgram gilt:
+	\begin{equation*}
+		A\text{ bijektiv}\Leftrightarrow A^{-1}\colon V^{\prime}\to V\text{ linear, beschränkt und stark positiv}
+	\end{equation*}
+\end{lemma}

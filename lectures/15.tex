@@ -1,0 +1,97 @@
+\lecture{15}{06.06.2017}{Dr. Raphael Kruse}{Frank Rehfeld}
+Sei $\W \subset\R^{d},d\in\N$ ein beschränktes Gebiet. Hierbei meint Gebiet eine nichtleere, offene, zusammenhängende Teilmenge von $\R^{d}$. Wir betrachten das Randwertproblem
+\begin{equation*}
+	\left(P_{d}\right)\begin{cases}
+		\text{Finde } u\in\C^{2}\left(\W\right) \cap \C\left(\overbar{\W}\right)\\
+		-\Delta u = f \text{ in }\W\\
+		u\left(x\right) = g\left(x\right) \text{ auf }\partial\W
+	\end{cases}
+\end{equation*}
+
+\begin{definition}
+	$\C^{\infty}_{\text{c}}:=\left\{\phi\in\C^{\infty}\colon\operatorname{supp}\left(\phi\right)\subset_{\text{c}}\W\right\}$ ist die \textbf{Menge der Testfunktionen}. Wenn $\W$ offen und $\operatorname{supp}\left(\phi\right)$ abgeschlossen ist und $\operatorname{supp}\left(\phi\right)\subset_{\text{c}}\W$, dann gilt $\operatorname{dist}\left(\partial\W,\operatorname{supp}\left(\phi\right)\right)>0$.{}
+	
+	$\L^{1}_{\text{loc}}\left(\W\right) := \left\{u\colon\W\to\R\colon u\einschraenkung_{K}\in\L^{1}\left(K\right)\forall K\subset_{\text{c}}\W\right\}$ ist der \textbf{Raum der lokal integrierbaren Funktionen}.
+	
+	Sei $\alpha\in\N_{0}^{d}$ ein Multiindex, $|\alpha|=\sum_{i=1}^{d}\alpha_{i}$ beschreibt die \textbf{Ordnung der Ableitung} und $\partial^{\alpha}:=\Pi_{i=1}^{d}\frac{\partial^{\alpha_{i}}}{\partial x_{i}^{\alpha_{i}}}$ die \textbf{Ableitung}.
+\end{definition}
+
+\begin{definition}
+	Es sind $u,v\in\L^{1}_{\text{loc}}\left(\W\right)$, $\alpha\in\N_{0}^{d}$. $v$ ist die \textbf{$\alpha$-te schwache Ableitung} von $u$ wenn gilt
+	\begin{equation*}
+		\int_{\W}u\partial^{\alpha}\phi\d x = \left(-1\right)^{|\alpha|}\int_{\W}v\phi\d x \forall \phi\in\C^{\infty}_{\text{c}}\left(\W\right)
+	\end{equation*}
+\end{definition}
+
+\begin{lemma}[Fundamentallemma der Variationsrechnung]
+	Es sei $u\in\L^{1}_{\text{loc}}\left(\W\right)$ mit $\int_{\W} u\phi\d x = 0 \forall\phi\in\C^{\infty}_{\text{c}}\left(\W\right)$. Dann gilt $u=0$ fast überall.
+\end{lemma}
+
+\begin{definition}
+	Sei $k\in\N$, $p\in\left[1,\infty\right]$.\\
+	$W^{k,p}\left(\W\right):=\left\{u\in\L^{p}\left(\W\right)\colon \forall\alpha\in\N_{0}^{d}\text{ mit }|\alpha|\leq k \exists\partial^{\alpha}u\in\L^{p}\left(\W\right)\right\}$
+	\begin{align*}
+		p\in\left[1,\infty\right)&: &\|u\|_{k,p} :&= \left(\sum_{|\alpha|\leq k}\|\partial^{\alpha}u\|_{0,p}^{p}\right)^{1/p}\\
+		p=\infty&: &\|u\|_{k,\infty} :&= \sum_{|\alpha|\leq k}\|\partial^{\alpha}u\|_{0,\infty}
+	\end{align*}
+	definiert Normen und
+	\begin{align*}
+		p\in\left[1,\infty\right)&: &|u|_{k,p} :&= \left(\sum_{|\alpha|= k}\|\partial^{\alpha}u\|_{0,p}^{p}\right)^{1/p}\\
+		p=\infty&: &|u|_{k,\infty} :&= \sum_{|\alpha|= k}\|\partial^{\alpha}u\|_{0,\infty}
+	\end{align*}
+	definiert Halbnormen. Der Raum $W^{k,2} =:\H^{k}$ ist ein Hilbertraum mit
+	\begin{equation*}
+		\left(u,v\right)_{k,2} := \sum_{|\alpha|\leq k}\left(\partial^{\alpha}u,\partial^{\alpha}v\right)_{0,2}
+	\end{equation*}
+\end{definition}
+
+Es gilt
+\begin{itemize}
+	\item $p\in\left[1,\infty\right], k\in\N\colon W^{k,p}$ sind Banachräume und $\H^{k}$ sind Hilberträume.
+	\item $p\in\left[1,\infty\right], k\in\N\colon W^{k,p}$ sind separabel.
+	\item $p\in\left(1,\infty\right), k\in\N\colon W^{k,p}$ sind reflexiv.
+	\item $\L^{p}\left(\W\right)\hookrightarrow\L^{q}\left(\W\right)$ für $p\geq q$ (mit Hölder) und demzufolge $W^{k,p}\hookrightarrow W^{k,q}$ für $p\geq q, k\in\N$
+\end{itemize}
+
+\begin{definition}
+	$W^{k,p}_{0}\left(\W\right) := \overbar{\C^{\infty}_{\text{c}}\left(\W\right)}$\\
+	$\H^{-1}\left(\W\right) := \left(\H^{1}_{0}\left(\W\right)\right)^{\prime}$
+\end{definition}
+
+\begin{lemma}[Satz]
+	$W^{k,p}\left(\W\right)\cap\C^{\infty}\left(\W\right)$ liegt dich in $W^{k,p}\left(\W\right)$.
+\end{lemma}
+
+\begin{definition}
+	Ein Gebiet $\W\subset\R^{d}$ heißt \textbf{Lipschitz-Gebiet}, wenn
+	\begin{align*}
+		\forall x_{0}\in\partial\W\exists r\in\left(0,\infty\right)\text{ und }g\colon\R^{d-1}\to\R\text{ Lipschitz-stetig so, dass }\\
+		B\left(x_{0},r\right)\cap \W = \left\{\left(x_{1},\dots,x_{d}\right)\in B\left(x_{0},r\right)\colon x_{d} > g\left(x_{1},\dots,x_{d-1}\right)\right\}
+	\end{align*}
+\end{definition}
+
+Ist $\W$ beschränkt, so ist $\partial\W$ kompakt und es existieren endlich viele Lipschitz-stetige $g$ um $\partial\W$ zu beschreiben.\\
+\textbf{Von jetzt an sei $\W$ ein Lipschitz-Gebiet.}
+
+\begin{lemma}[Satz]
+	$\C^{\infty}\left(\overbar{\W}\right)$ liegt dicht in $W^{k,p}\left(\W\right)$.
+\end{lemma}
+
+\begin{lemma}[Sobolewscher Einbettungssatz]
+	$\W\subset\R^{d}$ sei ein Lipschitz-Gebiet
+	\begin{enumerate}
+		\item $kp<d$: $W^{k,p}\left(\W\right)\hookrightarrow W^{m,q}$, falls $\frac{1}{q}-\frac{m}{d}\geq\frac{1}{p}-\frac{k}{d}$.\\
+			Also $W^{k,p}\left(\W\right)\hookrightarrow \L^{q}\left(\W\right)$ falls $\frac{1}{q}\geq \frac{1}{p}-\frac{k}{d}$.
+		\item $kp=d$: $W^{k,p}\left(\W\right)\hookrightarrow\L^{q}\left(\W\right)\forall 1\leq q<\infty${}
+		\item $kp>d$: $W^{k,p}\left(\W\right)\hookrightarrow\C\left(\overbar{\W}\right)$.
+	\end{enumerate}
+\end{lemma}
+
+\begin{expl}
+	\begin{itemize}
+		\item $d=1$: $\H^{1}\left(\W\right) \hookrightarrow \C^{0,\alpha}\left(\overbar{\W}\right)$ für $\alpha\in\left(0,\frac{1}{2}\right)$.{}
+		\item $d=2$: $\H^{1}\left(\W\right) \hookrightarrow \L^{q}\left(\W\right)\forall q\in\left[1,\infty\right)${}
+		\item $d=3$: $\H^{1}\left(\W\right) \hookrightarrow \L^{6}\left(\W\right)${}
+		\item $d=4$: $\H^{1}\left(\W\right) \hookrightarrow \L^{3}\left(\W\right)$
+	\end{itemize}
+\end{expl}

@@ -1,0 +1,91 @@
+\lecture{10}{17.05.2017}{Dr. Raphael Kruse}{Frank Rehfeld}
+\begin{expl}
+	Das klassische Problem
+	\begin{equation*}
+		\left(P_{2}\right)\begin{cases}
+			-u^{\prime\prime}\left(x\right) = \delta_{0}\left(x\right)\text{ in }\W=\left(-1,1\right)\\
+			u\left(-1\right) = u\left(1\right) = 0
+		\end{cases}
+	\end{equation*}
+	ergibt das variationelle Problem
+	\begin{equation*}
+		\left(V_{2}\right)\begin{cases}
+			\text{Finde } u\in\H^{1}_{0}\left(\W\right)\\
+			\int_{-1}^{1} u^{\prime}\left(x\right)v^{\prime}\left(x\right)\d x = v\left(0\right) \forall v\in\H^{1}_{0}
+		\end{cases}
+	\end{equation*}
+	Hierbei ist $a\left(u,v\right)=\int_{-1}^{1}u^{\prime}\left(x\right)v^{\prime}\left(x\right)\d x$ ein inneres Produkt und erfüllt somit die Voraussetzungen von Lax-Milgram an $a$. Außerdem gilt $|v\left(0\right)|\leq\|v\|_{\infty}\leq c\|v\|_{1,2}$ und somit ist die rechte Seite stetig. Somit sind alle Voraussetzungen von Lax-Milgram erfüllt und es existiert eine eindeutige Lösung von $\left(V_{2}\right)$.
+\end{expl}
+\begin{expl}
+	\begin{equation*}
+		\left(P_{3}\right)\begin{cases}
+			-u^{\prime\prime}\left(x\right)-u\left(x\right) = f\left(x\right)\text{ in }\W=\left(0,\pi\right)\\
+			u\left(-1\right) = u\left(\pi\right) = 0
+		\end{cases}
+	\end{equation*}
+	mit $f\in\H^{-1}$ beliebig.
+	\begin{equation*}
+		\left(V_{3}\right)\begin{cases}
+			\text{Finde } u\in\H^{1}_{0}\left(\W\right)\\
+			\int_{0}^{\pi} u^{\prime}\left(x\right)v^{\prime}\left(x\right)-u\left(x\right)v\left(x\right)\d x = \left<f,v\right> \forall v\in\H^{1}_{0}
+		\end{cases}
+	\end{equation*}
+	Hierbei ist $a$ bilinear und beschränkt. Es gilt jedoch für $v\left(x\right)=\operatorname{sin}\left(x\right)${}
+	\begin{equation*}
+		a\left(v,v\right) = \int_{0}^{\pi} \operatorname{cos}^{2}\left(x\right)-\operatorname{sin}^{2}\left(x\right)\d x = 0
+	\end{equation*}
+	Somit ist $a$ nicht stark positiv und der Satz von Lax-Milgram nicht anwendbar.
+	
+	In der Tat gibt es für $f\equiv 1$ keine schwache Lösung und für $f\equiv 0$ existieren unendlich viele Lösungen.
+\end{expl}
+\begin{lemma}[Korollar]
+	Sei $V=\H^{1}_{0}\left(\W\right), f\in\H^{-1}\left(\W\right), c,c^{\prime},d\in\L^{\infty}\left(\W\right)$ und $\underline{d}\colon d\left(x\right)-\frac{1}{2}c^{\prime}\left(x\right) \geq \underline{d} > -\frac{\pi^{2}}{\left(b-a\right)^{2}}$ fast überall. Dann besitzt $\left(P_{\text{Dir}}\right)$ genau eine schwache Lösung $u\in\H^{1}_{0}\left(\W\right)$.
+\end{lemma}
+
+\begin{lemma}[Regularitätsfrage für Randwertprobleme]
+	Unter Voraussetzungen des obigen Korollars und der zusätzlichen Annahme $c,d\in\C^{k-1}\left(\W\right)$ für ein $k\in\N$, $f,f^{\prime},\dots,f^{\left(k-1\right)}\in\L^{2}\left(\W\right)$ ergibt sich, für die schwache Lösung $u\in\H^{1}_{0}\left(\W\right)\cap\H^{k+1}\left(\W\right)$ und
+	\begin{equation*}
+		\exists C\in\left(0,\infty\right)\colon\|u\|_{\H^{k+1}\left(\W\right)}\leq C\|f\|_{\H^{k-1}\left(\W\right)}
+	\end{equation*}
+\end{lemma}
+\begin{proof}
+	\underline{Beweis für den Fall $k=1$}
+	Definiere
+	\begin{equation*}
+		w:= -\left(f-cu^{\prime}-du\right)\in\L^{2}\left(\W\right)
+	\end{equation*}
+	Weiterhin sei $\psi\in\C^{\infty}_{\text{c}}\left(\W\right)\subset\H^{1}_{0}\left(\W\right)$ beliebig. Es gilt
+	\begin{align*}
+		a\left(u,\phi\right) &= \int_{\W}\left(u^{\prime}\phi^{\prime}+cu^{\prime}\phi + du\phi\right)\d x = \int_{\W}f\phi\d x\\
+		\Leftrightarrow \int_{\W}u^{\prime}\phi^{\prime}\d x &= -\int_{\W}-\left(f\phi-cu^{\prime}\phi-du\phi\right)\d x\\
+			&= -\int_{\W}-\underbrace{\left(f-cu^{\prime}-du\right)}_{=w}\phi\d x
+	\end{align*}
+	und somit $u\in\H^{2}\cap\H^{1}_{0}\left(\W\right)$.{}
+	
+	Weiterhin
+	\begin{align*}
+		\int_{\W}|u^{\prime\prime}|^{2}\d x &= \int_{\W}|w|^{2}\d x \\
+			&\leq C\left(\|f\|_{0,2}^{2}+\|c\|_{\infty}^{2}|u|_{1,2}^{2}+\|d\|_{\infty}^{2}\|u\|_{0,2}^{2}\right)\\
+			&\leq C\left(\|f\|_{0,2}^{2} + \left(\|c\|_{\infty}^{2}+\|d\|_{\infty}^{2}\frac{\left(b-a\right)^{2}}{\pi^{2}}\right)|u|_{1,2}^{2}\right)
+	\end{align*}
+	und mit $u=A^{-1}f$ und $\|A^{-1}\|_{L\left(\H^{-1},\H^{1}_{0}\right)} <\infty$ ergibt sich
+	\begin{equation*}
+		|u|_{1,2} \leq |A^{-1}f| \leq \|A^{-1}\|\|f\|_{0,2}
+	\end{equation*}
+\end{proof}
+
+\begin{lemma}[Korollar]
+	Unter den Voraussetzungen des Regularitätssatzes und der zusätzlichen Annahme $f\in\C\left(\overbar{\W}\right)$ mit $k=1$ gilt, dass $u$ eine Lösung im klassischen Sinne ist.
+\end{lemma}
+\begin{proof}
+	Sei $u\in\H^{2}\left(\W\right)$. Dann besitzt $u^{\prime}\in\H^{1}\left(\W\right)$ einen stetigen Repräsentanten.
+	
+	Setze $w = -\left(f-cu^{\prime}-du\right)\in\C\left(\overbar{\W}\right)$. Betrachten wir nun das Problem
+	\begin{equation*}
+		\begin{cases}
+			-\tilde{u}^{\prime\prime} = w\\
+			\tilde{u}\left(a\right) = \tilde{u}\left(b\right)=0
+		\end{cases}
+	\end{equation*}
+	Es gilt $\tilde{u} = u$ fast überall.
+\end{proof}

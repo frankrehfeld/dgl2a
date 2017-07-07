@@ -1,0 +1,115 @@
+\lecture{14}{31.05.2017}{Dr. Raphael Kruse}{Frank Rehfeld}
+\begin{expl}
+	Betrachte das Problem
+	\begin{equation*}
+		\left(V\right) \begin{cases}
+			\text{Finde }u\in \H^{1}_{0}\left(\W\right)\text{ mit}\\
+			a\left(u,v\right) = \int_{\W}u^{\prime}v^{\prime}\d x = \int_{\W}fv\d x
+		\end{cases}
+	\end{equation*}
+	Es ergibt sich
+	\begin{equation*}
+		a\left(\phi_{i},\phi_{j}\right) = \begin{cases}
+			\frac{2}{h} &, i=j\\
+			\frac{-1}{h} &, |i-j|=1\\
+			0 &,\text{ sonst}
+		\end{cases}
+	\end{equation*}
+	und daher
+	\begin{equation*}
+		\mathbb{A}_{h} = \frac{1}{h}\begin{bmatrix}
+		2  & -1     &        &        &    \\
+		-1 & 2      & \ddots &        &    \\
+		   & \ddots & \ddots & \ddots &    \\
+		   &        & \ddots & 2      & -1 \\
+		   &        &        & -1     & 2
+		\end{bmatrix}
+	\end{equation*}
+\end{expl}
+Ziel ist es, dass $\left(V_{h}\right)_{h\in\left(0,1\right)}$ ein Galerkin-Schema wird. Wir definieren dann
+\begin{equation*}
+	I_{h}\colon V\to V_{h}, v\mapsto \sum_{j=1}^{m} v\left(z_{j}\right)\phi_{j}
+\end{equation*}
+so, dass $\left[I_{h}v\right]\left(z_{i}\right) = \sum_{j=1}^{m}v\left(z_{j}\right)$. Man nennt $I_{h}$ \textbf{Interpolation} und der Operator ist wohldefiniert, da $\H^{1}_{0}\left(\W\right)\hookrightarrow \C\left(\overbar{\W}\right)$.{}
+
+\begin{lemma}[Satz]
+	Die Folge $\left(V_{h}\right)_{h\in\left(0,1\right)}$ der stückweise linearen FE-Räume mit äquidistanten Gitter bildet ein Galerkin-Schema in $\H^{1}_{0}\left(\W\right)$ und es gilt $\forall v\in\H^{1}_{0}\left(\W\right)\cap \H^{2}\left(\W\right), h=\frac{b-a}{m+1}\in\left(0,1\right)${}
+	\begin{align*}
+		\|v-I_{h}v\|_{0,2} &\leq Ch^{2}\|v\|_{2,2}\\
+		|v-I_{h}v|_{1,2} &\leq Ch\|v\|_{2,2}
+	\end{align*}
+\end{lemma}
+\begin{proof}
+	\begin{enumerate}
+		\item \underline{Beschränktheit von $I_{h}$}\\
+			Es gilt:
+			\begin{align*}
+				\left[I_{h}v\right]\left(x\right) &= v\left(z_{i-1}\right) + \frac{x-z_{i-1}}{h}\left(v\left(z_{i}\right)-v\left(z_{i-1}\right)\right) \text{ für }x\in\left[z_{i-1},z_{i}\right]\\
+				\left[I_{h}v\right]^{\prime}\left(x\right) &= \frac{1}{h}\left(v\left(z_{i}\right)-v\left(z_{i-1}\right)\right) \text{ für }x\in\left[z_{i-1},z_{i}\right]
+			\end{align*}
+			Und somit folgt
+			\begin{align*}
+				|I_{h}v|_{1,2}^{2} &= \int_{\W}\left(\left[I_{h}v\right]^{\prime}\left(x\right)\right)^{2}\d x\\
+					&= \sum_{i=1}^{m}\int_{z_{i-1}}^{z_{i}}\frac{1}{h^{2}}\left(v\left(z_{i}\right)-v\left(z_{i-1}\right)\right)^{2}\d x\\
+					&= \frac{1}{h}\sum_{i=1}^{m}\left(\int_{z_{i-1}}^{z_{i}}v^{\prime}\left(\xi\right)\d\xi\right)^{2}\\
+					&\leq \frac{1}{h}\sum_{i=1}^{m}h\int_{z_{i-1}}^{z_{i}}\left(v^{\prime}\left(\xi\right)\right)^{2}\d\xi = |v|_{1,2}^{2}
+			\end{align*}
+			und somit $\|I_{h}\|_{L\left(V\right)} \leq 1$.
+		\item{}
+			\begin{align*}
+				|v-I_{h}v|_{1,2}^{2} &= \sum_{i=1}^{m}\int_{z_{i-1}}^{z_{i}}\left(\left(v\left(x\right)-\left[I_{h}v\right]\left(x\right)\right)^{\prime}\right)^{2}\d x\\
+					&= \sum_{i=1}^{m}\int_{z_{i-1}}^{z_{i}}\left(v^{\prime}\left(x\right)-\frac{1}{h}\left(v\left(z_{i}\right)-v\left(z_{i-1}\right)\right)\right)^{2}\d x\\
+					&= \frac{1}{h^{2}} \sum_{i=1}^{m}\int_{z_{i-1}}^{z_{i}}\left(\int_{z_{i-1}}^{z_{i}}v^{\prime}\left(x\right)-v^{\prime}\left(\xi\right)\d\xi\right)^{2}\d x\\
+					&\overset{\mathclap{\text{CSU}}}{\leq}\hspace*{0.5em}\frac{1}{h}\sum_{i=1}^{m}\int_{z_{i-1}}^{z_{i}}\int_{z_{i-1}}^{z_{i}}\left(\int_{z_{i-1}}^{z_{i}}|v^{\prime\prime}\left(\xi\right)|\d y\right)^{2}\d\xi\d x\\
+					&\overset{\mathclap{\text{CSU}}}{\leq}\hspace*{0.5em} \sum_{i=1}^{m}\int_{z_{i-1}}^{z_{i}}\int_{z_{i-1}}^{z_{i}}\int_{z_{i-1}}^{z_{i}}|v^{\prime\prime}\left(y\right)|\d y\d\xi\d x\\
+					&= h^{2}\|v^{\prime}\|_{0,2}^{2} \leq h^{2}\|v\|_{2,2}^{2}
+			\end{align*}
+			Durch ziehen der Wurzel ist die zweite Abschätzung gezeigt.
+		\item \underline{limitierte Vollständigkeit}\\
+		Sei $v\in\H^{1}_{0}\left(\W\right) = \overbar{\C^{\infty}_{\text{c}}\left(\W\right)}$,$\e\in\left(0,\infty\right)$. Dann existiert ein $\Psi\in\C^{\infty}_{\text{c}}\left(\W\right)$ mit $|v-\Psi|_{1,2}<\frac{\e}{3}$ und es gilt
+		\begin{equation*}
+			|v-I_{h}v|_{1,2} \leq \underbrace{|v-\Psi|_{1,2}}_{<\frac{\e}{3}} + \underbrace{|\Psi-I_{h}\Psi|_{1,2}}_{\leq h\|\Psi\|_{2,2}} + \underbrace{|I_{h}\left(\Psi-v\right)|_{1,2}}_{\leq |\Psi-v|_{1,2} < \frac{\e}{3}}
+		\end{equation*}
+		Für $h\in\left(0,\frac{\e}{3}\|\Psi\|_{2,2}^{-1}\right)$ gilt also $|v-I_{h}v|_{1,2} < \e$. Da es für $\e\in\left(0,\infty\right)$ ein $m_{0}$ gibt, so dass $\forall m\geq m_{0}, h=\frac{b-a}{m+1}$ gilt
+		\begin{equation*}
+			\operatorname{dist}\left(v,V_{h}\right) \leq |v-I_{h}v|_{1,2} \leq \e
+		\end{equation*}
+		ist $\left(V_{h}\right)_{h\in\left(0,1\right)}$ ein Galerkin-Schema.
+	\end{enumerate}
+	Die erste Ungleichung ist eine Übung.
+\end{proof}
+
+\begin{lemma}[Korollar]
+	$\left(V_{h}\right)_{h\in\left(0,1\right)}$ wie eben und $u\in\H^{1}_{0}\left(\W\right)$ ist die schwache Lösung zum linearen Randwertproblem $\left(P_{\text{Dir}}\right)$. Dann konvergiert die Folge $\left(u_{h}\right)_{h\in\left(0,1\right)}$ der FEM-Lösungen gegen $u$ in $|\cdot|_{1,2}$. Gilt zusätzlich \mbox{$u\in\H^{1}_{0}\left(\W\right)\cap\H^{2}\left(\W\right)$}, dann gilt $|u-u_{h}|_{1,2}\leq ch\|u\|_{2,2}\forall h\in\left(0,1\right)$.
+\end{lemma}
+
+Es ergibt sich also ein Konvergenz erster Ordnung.
+
+\begin{lemma}[Satz]
+	Unter den Voraussetzungen des obigen Korollars und $u\in\H^{1}_{0}\left(\W\right)\cap\H^{2}\left(\W\right)$ gilt
+	\begin{equation*}
+		\|u-u_{h}\|_{0,2} \leq ch^{2}\|u\|_{2,2}
+	\end{equation*}
+\end{lemma}
+\begin{proof}
+	Wir verwenden den sogenannten "Nitsche Trick".\\
+	Sei $u\in\H^{1}_{0}\left(\W\right)$, $u_{h}\in V_{h}$ wie oben. Dann definieren wir $e_{h} := u-u_{h}\in\H^{1}_{0}\left(\W\right)\hookrightarrow \H^{-1}$ und betrachten das Problem
+	\begin{equation*}
+		\left(V^{\prime}\right)\begin{cases}
+			\text{Finde } w\in\H^{1}_{0}\left(\W\right)\\
+			a\left(v,w\right) = \left<e,v\right> \forall v\in V
+		\end{cases}
+	\end{equation*}
+	das die Voraussetzungen von Lax-Milgram erfüllt. Also gibt es eine Lösung von $\left(V^{\prime}\right)$. Mit dem Regularitätssatz erhält man $\|w\|_{2,2}\leq c\|e\|_{0,2}$. Testet man mit $e$, so erhält man
+	\begin{align*}
+		\|e\|_{0,2}^{2} = \left(e,e\right)_{0,2} &= \left<e,e\right>\\
+			&= a\left(e,w\right) = a\left(u-u_{h},w\right)\\
+			&= a\left(u-u_{h},w-v_{h}\right)\\
+			&\leq \beta|u-u_{h}|_{1,2}|w-v_{h}|_{1,2}\\
+			&\leq c\beta h\|u\|_{2,2}|w-v_{h}|_{1,2}
+	\end{align*}
+	und es ergibt sich
+	\begin{equation*}
+		\|e\|_{0,2}^{\bcancel{2}} < \tilde{c}h\|u\|_{2,2}|w-I_{h}w|_{1,2} \leq \tilde{tilde{c}}h^{2}\|u\|_{2,2}\|w\|_{2,2} \leq \overbar{c}h^{2}\|u\|_{2,2}\bcancel{\|e\|_{0,2}}
+	\end{equation*}
+\end{proof}

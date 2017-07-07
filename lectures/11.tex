@@ -1,0 +1,87 @@
+\lecture{11}{23.05.2017}{Dr. Raphael Kruse}{Frank Rehfeld}
+Es stellt sich die Frage, ob der Satz von Lax-Milgram auch auf Banachräume anwendbar ist. Hierbei unterscheiden wir 2 Fälle.
+\begin{enumerate}
+	\item $a$ ist symmetrisch. \\
+	Dann ist $a$ ein Skalarprodukt. Nun führen wir über das Skalarprodukt eine Norm ein und erhalten, dass diese äquivalent zur Energienorm ist. Betrachte nun den Raum $\left(V,\|\cdot\|_{a},a\left(\cdot,\cdot\right)\right)$. Dieser ist ein Hilbertraum und wir können Lax-Milgram anwenden.
+	\item $a$ allgemein.\\
+	Hierbei betrachten wir den symmetrischen Anteil $\tilde{a}\left(u,v\right) = \frac{1}{2}\left(a\left(u,v\right)+a\left(v,u\right)\right)$. Dann ist $\tilde{a}$ symmetrisch, bilinear, beschränkt und stark positiv. Somit ist $\tilde{a}$ ein Skalarprodukt und wir können wie im obigen Fall weiter machen.
+\end{enumerate}
+Somit kann nicht auf jeden Banachraum der Satz von Lax-Milgram angewendet werden. Zusätzliche Anforderungen an $a$ geben die benötigte Struktur.
+
+\section{Nicht-lineare Variationsprobleme mit stark monotonen Operatoren}
+Betrachte das Problem
+\begin{equation*}
+	\left(P_{\text{Mon}}\right)\begin{cases}
+		-\left(\Psi\left(|u^{\prime}\left(x\right)|\right)u^{\prime}\left(x\right)\right)^{\prime} + c\left(x\right)u^{\prime}\left(x\right) + d\left(x\right)u\left(x\right) = f\left(x\right) \text{ für } x\in\W=\left(a,b\right)\\
+		u\left(a\right)=u\left(b\right) = 0
+	\end{cases}
+\end{equation*}
+mit $-\left(\Psi\left(|u^{\prime}\left(x\right)|\right)u^{\prime}\left(x\right)\right)^{\prime}$ nicht-linear (genauer: quasi-linear). An $\Psi\colon\left[0,\infty\right)\to\R$ stetig haben wir folgende Anforderungen
+\begin{enumerate}
+	\item $|\Psi\left(t\right)|\leq M \forall t\geq 0$
+	\item $|\Psi\left(t\right)t-\Psi\left(s\right)s|\leq M|t-s| \forall t,s\in\left[0,\infty\right)${}
+	\item $\Psi\left(t\right)t-\Psi\left(s\right)s\geq m\left(t-s\right) \text{ für } t\geq s\geq 0$\\
+			$\implies \Psi\left(t\right) \geq m \forall t\in\left[0,\infty\right)$
+\end{enumerate}
+Diese Modelle werden beispielsweise in der nichtlinearen Elastizitätstheorie angewandt.
+
+\begin{definition}
+	Sei $\left(V,\|\cdot\|_{V}\right)$ ein reeller Banachraum und $A\colon V\to V^{\prime}$ \textbf{Lipschitz-stetig}, dh
+	\begin{equation*}
+		\|A\left[u\right]-A\left[v\right]\|_{V^{\prime}}\leq\beta\|u-v\|_{V}\text{ für ein }\beta\in\left(0,\infty\right)
+	\end{equation*}
+	\begin{itemize}
+		\item $A$ heißt \textbf{monoton} $\Leftrightarrow \left<A\left[u\right]-A\left[v\right],u-v\right> \geq 0$
+		\item $A$ heißt \textbf{stark monoton} $\Leftrightarrow \exists\mu\in\left(0,\infty\right)\colon\left< A\left[u\right]-A\left[v\right],u-v\right> \geq \mu\|u-v\|_{V}^{2}$
+	\end{itemize}
+\end{definition}
+
+\begin{lemma}[Satz von Zarantonello]
+	Sei $\left(V,\|\cdot\|_{V},\left(\cdot,\cdot\right)_{V}\right)$ ein reeller Hilbertraum, $A\colon V\to V^{\prime}$ Lipschitz-stetig und stark monoton.
+	Dann hat für jedes $f\in V^{\prime}$ das Problem $A\left[u\right] = f$ eine eindeutige Lösung.
+\end{lemma}
+\begin{proof}
+	Der Beweis folgt in den Schritten 1. bis 4. analog dem Beweis von Lax-Milgram.
+	\begin{enumerate}
+		\setcounter{enumi}{4}
+		\item \begin{align*}
+			\|\Psi\left(v\right)-\Psi\left(w\right)\|_{V}^{2} &= \|v-w\|_{V}^{2}-2\tau\left(I\left(A\left[v\right]-A\left[w\right]\right),v-w\right) + \tau^{2}\|I\left(A\left[v\right]-A\left[w\right]\right)\|_{V}^{2}\\
+			&= \|v-w\|_{V}^{2} - 2\tau\left<A\left[v\right]-A\left[w\right],v-w\right> + \tau^{2}\|A\left[v\right]-A\left[w\right]\|_{V^{\prime}}^{2}\\
+			&\overset{\mathclap{\text{Monoton}}}{\leq}\left(1-2\tau\mu+\tau^{2}\beta^{2}\right)\|v-w\|_{V}^{2}
+			\end{align*}
+	\end{enumerate}
+\end{proof}
+Hiermit ist auch gezeigt, dass $A^{-1}\colon V^{\prime}\to V$ existiert. Weiterhin kann gezeigt werden, dass $A^{-1}$ Lipschitz-stetig und stark monoton ist.
+
+\begin{lemma}[Korollar]
+	Sei $V=\H^{1}_{0}\left(\W\right)$, $f\in V^{\prime}, c,c^{\prime},d\in\L^{\infty}\left(\W\right)$ und für ein $\underline{d}\in\R$ gilt
+	\begin{equation*}
+		d\left(x\right)-\frac{1}{2}c^{\prime}\left(x\right)\geq\underline{d}\geq -\frac{m\pi^{2}}{\left(b-a\right)^{2}} \text{ fast überall in } \W
+	\end{equation*}
+	Dann besitzt das Problem $A[u]=f$ genau eine Lösung, wenn $\Psi$ die Eigenschaften vom Anfang der Vorlesung erfüllt.
+\end{lemma}
+\begin{prf}
+	Wir zeigen, dass unter den Voraussetzungen $A$ stark monoton und Lipschitz-stetig ist.
+	
+	Seien $c\equiv d\equiv 0$. Ansonsten folge dem linearen Fall.
+	
+	\underline{Lipschitz-Stetigkeit}
+	
+	Seien $u,v,w\in V$.
+	\begin{align*}
+		|\left<A\left[u\right]-A\left[v\right],w\right>| &= |a\left(u,w\right)-a\left(v,w\right)|\\
+			&= |\int_{\W}\left(\Psi\left(|u^{\prime}|\right)u-\Psi\left(|v^{\prime}|\right)v\right)w\d x|\\
+			&\overset{\mathclap{\text{CSU}}}{\leq}\hspace*{0.5em}\left(\int_{\W}|\Psi\left(|u^{\prime}|\right)u^{\prime}-\Psi\left(|v^{\prime}|\right)v^{\prime}|^{2}\d x\right)^{1/2} + |w|_{1,2}
+	\end{align*}
+	Aus Voraussetzung 2. vom Anfang der Vorlesung folgt $\forall x\in\W\colon u^{\prime}\left(x\right)v^{\prime}\left(x\right)\geq 0$
+	\begin{equation*}
+		|\Psi\left(|u^{\prime}\left(x\right)|\right)u^{\prime}\left(x\right)-\Psi\left(|v^{\prime}\left(x\right)|\right)v^{\prime}\left(x\right)|\leq M|u^{\prime}\left(x\right)-v^{\prime}\left(x\right)|
+	\end{equation*}
+	und $\forall x\in\W\colon u^{\prime}\left(x\right)\geq 0, v^{\prime}\left(x\right)<0$ folgt
+	\begin{align*}
+		|\Psi\left(|u^{\prime}\left(x\right)|\right)u^{\prime}\left(x\right)-\Psi\left(|v^{\prime}\left(x\right)|\right)v^{\prime}\left(x\right)| &\leq |\Psi\left(|u^{\prime}\left(x\right)|\right)u^{\prime}\left(x\right)| + |\Psi\left(|v^{\prime}\left(x\right)|\right)v^{\prime}\left(x\right)|\\
+		&\leq \underbrace{\Psi\left(|u^{\prime}\left(x\right)|\right)}_{\leq M}u^{\prime}\left(x\right) + \underbrace{\Psi\left(|v^{\prime}\left(x\right)|\right)}_{\leq M}|v^{\prime}\left(x\right)|\\
+		&\leq M\left(u^{\prime}\left(x\right)-|v^{\prime}\left(x\right)|\right) \leq M\left(u^{\prime}\left(x\right)-v^{\prime}\left(x\right)\right) = M|u^{\prime}\left(x\right)-v^{\prime}\left(x\right)|
+	\end{align*}
+	Der Fall $u^{\prime}\left(x\right)< 0, v^{\prime}\left(x\right)\geq 0$ folgt analog.
+\end{prf}

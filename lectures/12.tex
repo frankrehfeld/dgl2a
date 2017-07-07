@@ -1,0 +1,102 @@
+\lecture{12}{24.05.2017}{Dr. Raphael Kruse}{Frank Rehfeld}
+\begin{proof}[Fortsetzung]
+	\underline{starke Monotonie}
+	
+	Betrachte
+	\begin{equation*}
+		\left<A\left[u\right]-A\left[v\right],u-v\right> = \int_{\W}\left(\Psi\left(|u^{\prime}|\right)u^{\prime}-\Psi\left(|v^{\prime}|\right)v^{\prime}\right)\left(u^{\prime}-v^{\prime}\right)\d x
+	\end{equation*}
+	Wir unterscheiden die Fälle
+	\begin{enumerate}
+		\item $x\in\W\colon u^{\prime}\left(x\right)\geq v^{\prime}\left(x\right)\geq 0$: Mit Eigenschaft 3. folgt
+		\begin{equation*}
+			\left(\Psi\left(|u^{\prime}\left(x\right)|\right)u^{\prime}\left(x\right) - \Psi\left(|v^{\prime}\left(x\right)|\right)v^{\prime}\left(x\right)\right)\left(u^{\prime}\left(x\right)-v^{\prime}\left(x\right)\right) \geq m\left(u^{\prime}\left(x\right)-v^{\prime}\left(x\right)\right)^{2}
+		\end{equation*}
+		\item $x\in\W\colon v^{\prime}\left(x\right)\geq u^{\prime}\left(x\right)\geq 0$ folgt analog mit vertauschten Rollen
+		\item $x\in\W\colon v^{\prime}\left(x\right)\leq u^{\prime}\left(x\right)\leq 0$ und $x\in\W\colon u^{\prime}\left(x\right)\leq v^{\prime}\left(x\right)\leq 0$ folgen analog
+		\item $x\in\W\colon v^{\prime}\left(x\right)\leq 0 \leq u^{\prime}\left(x\right)${}
+		\begin{align*}
+			&\left(\Psi\left(|u^{\prime}\left(x\right)|\right)u^{\prime}\left(x\right)-\Psi\left(|v^{\prime}\left(x\right)|\right)v^{\prime}\left(x\right)\right)\left(u^{\prime}\left(x\right)-v^{\prime}\left(x\right)\right)\\ 
+			= &\underbrace{\Psi\left(-u^{\prime}\left(x\right)\right)}_{\geq m}\underbrace{u^{\prime}\left(x\right)}{\leq 0}\underbrace{\left(u^{\prime}\left(x\right)-v\left(x\right)\right)}_{\leq 0} - \underbrace{\Psi\left(-v^{\prime}\left(x\right)\right)}_{\geq m}\underbrace{v^{\prime}\left(x\right)}{\geq 0}\underbrace{\left(u^{\prime}\left(x\right)-v\left(x\right)\right)}_{\geq 0} \\
+			\geq &m\left(u^{\prime}\left(x\right)-v^{\prime}\left(x\right)\right)^{2}
+		\end{align*}
+		\item $x\in\W\colon u^{\prime}\left(x\right)\leq 0 \leq v^{\prime}\left(x\right)$ analog zu 4.
+	\end{enumerate}
+	Somit ist $\Psi$ stark monoton.
+\end{proof}
+
+\textbf{Für nichtlineare Probleme ist kein allgemein gültiger Regularitätssatz bekannt.}
+
+\begin{lemma}[Eindeutigkeit]
+	$A\colon V\to V^{\prime}$ stark monoton $\implies A$ injektiv.
+\end{lemma}
+\begin{proof}
+	Seien $v_{1},v_{2}\in V\colon A\left[v_{1}\right] = A\left[v_{2}\right]$. Dann gilt
+	\begin{equation*}
+		0 = \left<A\left[v_{1}\right]-A\left[v_{2}\right],v_{1}-v_{2}\right> \geq \mu\|v_{1}-v_{2}\|^{2}
+	\end{equation*}
+	Somit folgt $v_{1}=v_{2}$.
+\end{proof}
+
+\section{Galerkin-Verfahren und FEM}
+\begin{definition}
+	Sei $\left(V,\|\cdot\|_{V}\right)$ ein reeller Banachraum und $\left(V_{m}\right)_{m\in\N}$ eine Folge von endlichdimensionalen Teilräumen. $\left(V_{m}\right)$ heißt \textbf{Galerkin-Schema}, falls $\lim_{m\to\infty} \operatorname{d}\left(v,V_{m}\right) = 0 \forall v\in V$. Diese Eigenschaft wird \textbf{limitierte Vollständigkeit} genannt.
+\end{definition}
+
+\begin{definition}
+	Sei $\left(\phi_{j}\right)_{j\in I}\subset V$, $I\subset \N$ mit
+	\begin{itemize}
+		\item je endlich viele Elemente von $\left(\phi_{j}\right)$ sind linear unabhängig
+		\item $V_{m} := \operatorname{span}\left\{\phi_{1},\dots,\phi_{m}\right\}, m\in I$, ist ein Galerkin-Schema
+	\end{itemize}
+	Dann wird $\left(\phi_{j}\right)$ \textbf{Galerkin-Basis} von $V$ genannt.
+\end{definition}
+
+\begin{lemma}
+	Sei $V$ ein reeller, separabler Banachraum. Dann besitzt $V$ eine Galerkin-Basis.
+\end{lemma}
+\begin{proof}
+	\begin{enumerate}
+		\item $\operatorname{dim} V<\infty$: Dann ist jede Basis von $V$ eine Galerkin-Basis.
+		\item $\operatorname{dim} V=\infty$: Da $V$ separabel ist existiert eine dichte Teilmenge $\left(\psi_{j}\right)_{j\in\N}$.\\
+			Setze nun
+			\begin{align*}
+				\phi_{1} :&= \psi_{1} & V_{1} &= \operatorname{span}\left\{\phi_{1}\right\}\\
+				\phi_{m} :&= \psi_{j\left(m\right)} & j\left(m\right) &= \operatorname{min}\left\{j\in\N\colon \psi_{j}\notin V_{m-1}\right\}
+			\end{align*}
+			und es folgt
+			\begin{equation*}
+				\left(\psi_{j}\right)_{j=1}^{j\left(m\right)}\subset V_{m} = \operatorname{span}\left\{\phi_{1},\dots,\phi_{m}\right\}
+			\end{equation*}
+			und somit auch
+			\begin{equation*}
+				\left(\psi_{j}\right)_{j\in\N}\subset \bigcup_{m=1}^{\infty} V_{m} \implies \overbar{\bigcup_{m=1}^{\infty}V_{m}} = V
+			\end{equation*}
+			Also gilt: $\forall \e>0,v\in V\exists\tilde{v}\in\bigcup_{m=1}^{\infty}\colon\|v-\tilde{v}\|_{V} < \e$ und $\exists m\in\N\colon\tilde{v}\in V_{m}\subset V_{\tilde{m}}\forall\tilde{m} \geq m$.
+			
+			Zusammen erhält man
+			\begin{equation*}
+				\operatorname{d}\left(v,V_{\tilde{m}}\right) = \operatorname{inf}_{w\in V_{\tilde{m}}}\|v-w\|_{V} \leq \|v-\tilde{v}\|_{V} < \e \forall\tilde{m}\geq m
+			\end{equation*}
+	\end{enumerate}
+\end{proof}
+
+Betrachtet man das Problem
+\begin{equation*}
+	\left(V\right)\begin{cases}
+		\text{Finde }u\in V\text{ mit}\\
+		a\left(u,v\right)=\left<f,v\right> \forall v\in V
+	\end{cases}
+\end{equation*}
+mit $a$ wie in Kapitel 4. oder 5. Dann können wir $\left(V\right)$ mit einer Galerkin Dimensionsreduzierung in das Ersatzproblem
+\begin{equation*}
+	\left(V_{m}\right)\begin{cases}
+		\text{Finde }u_{m}\in V_{m}\text{ mit}\\
+		a\left(u_{m},v_{m}\right) = \left<f,v_{m}\right> \forall v_{m}\in V_{m}
+	\end{cases}
+\end{equation*}
+überführen. 
+\begin{enumerate}
+	\item \underline{Lösbarkeit}\\
+		Da $V_{m}$ ein Teilraum von $V$ ist, ist $V_{m}$ abgeschlossen und somit ein Banachraum. Demzufolge sind Lax-Milgram oder Zarantonello anwendbar um die Lösbarkeit zu erhalten.
+\end{enumerate}

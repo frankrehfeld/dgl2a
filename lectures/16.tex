@@ -1,0 +1,84 @@
+\lecture{16}{07.06.2017}{Dr. Raphael Kruse}{Frank Rehfeld}
+\begin{lemma}[Satz von Rellich]
+	Sei $\W$ ein Lipschitz-Gebiet. Dann gilt
+	\begin{equation*}
+		W^{k,p}\left(\W\right)\cembed W^{m,q}\left(\W\right)
+	\end{equation*}
+	falls $\frac{1}{q}-\frac{m}{d} > \frac{1}{p}-\frac{k}{d}, k>m$.
+\end{lemma}
+
+\begin{lemma}[Poincare-Friedrich-Ungleichung]
+	Sei $\W$ ein Lipschitz-Gebiet. Dann gilt $\forall u\in W^{k,p}_{0}\left(\W\right)\forall\alpha\in\N_{0}^{d}\colon |\alpha|\leq k$
+	\begin{equation*}
+		\|\partial^{\alpha}u\|_{0,p}\leq c|u|_{k,p}
+	\end{equation*}
+	wobei $c$ nur von $\W$ abhängt.\\
+	Auf $W^{k,p}_{0}\left(\W\right),k\in\N$, bildet $|\cdot|_{k,p}$ eine zu $\|\cdot\|_{k,p}$ äquivalente Norm.
+\end{lemma}
+
+\underline{Randwerte in $W^{k,p}\left(\W\right)$}\\
+Sei $\W\subset\R^{d}$ ein Lipschitz-Gebiet.
+\begin{enumerate}
+	\item $kp>d$: $W^{k,p}\left(\W\right)\hookrightarrow\C\left(\overbar{\W}\right)$ und $u\einschraenkung_{\partial\W}$ ist sinnvoll
+	\item $kp\leq d$:
+		\begin{lemma}[Spursatz]
+			Es existiert ein eindeutiges $\gamma\colon W^{1,p}\left(\W\right)\to\L^{p}\left(\partial \W\right)$ stetig und linear mit
+			\begin{equation*}
+				\gamma\left(u\right) = u\einschraenkung_{\partial\W}\forall u\in\C^{\infty}\left(\overbar{\W}\right)
+			\end{equation*}
+		\end{lemma}
+		\begin{definition}
+			Der eindeutig bestimmte Operator heißt \textbf{Spuroperator}.
+			\begin{equation*}
+				\operatorname{trace}\left(u\right):=\operatorname{tr}\left(u\right)\in\L^{p}\left(\partial\W\right)
+			\end{equation*}
+		\end{definition}
+		Ein expliziter Ausdruck für den Spuroperator kann nicht konstruktiv bestimmt werden. $\L^{p}\left(\partial\W\right)$ wird über das $\left(d-1\right)$-dimensionale Oberflächenmaß konstruiert.
+\end{enumerate}
+
+\begin{lemma}[Eigenschaften der Spur]
+	\begin{enumerate}
+		\item Charakterisierung: $W^{1,p}_{0}\left(\W\right) = \left\{u\in W^{1,p}\left(\W\right)\colon\gamma\left(u\right)=0\right\}$
+		\item $\gamma\colon W^{1,p}\left(\W\right)\to\L^{p}\left(\partial\W\right)$ ist nicht surjektiv.\\
+			$W^{1-1/p,p}\left(\partial\W\right) := \gamma\left(W^{1,p}\left(\W\right)\right)\subsetneq\L^{p}\left(\partial\W\right)$
+	\end{enumerate}
+\end{lemma}
+
+\begin{expl}
+	\begin{itemize}
+		\item Das Problem
+			\begin{equation*}
+				\left(P_{d}\right) \begin{cases}
+					\text{Finde }u\in\C^{2}\left(\W\right)\cap\C\left(\overbar{\W}\right)\\
+					-\Delta u = f\text{ in }\W\\
+					u = 0 \text{ auf }\partial\W
+				\end{cases}
+			\end{equation*}
+			heißt \textbf{Poisson-Gleichung}.
+		\item{} Das Problem
+			\begin{equation*}
+				\left(\tilde{P}_{d}\right) \begin{cases}
+					\text{Finde }u\in\C^{2}\left(\W\right)\cap\C\left(\overbar{\W}\right)\\
+					-\operatorname{div}\left(\mathbb{A}\left(x\right)\nabla u\left(x\right)\right) + c\left(x\right)\cdot\nabla u\left(x\right) + d\left(x\right)u\left(x\right) = f\left(x\right)\text{ in }\W\\
+					u = 0 \text{ auf }\partial\W
+				\end{cases}
+			\end{equation*}
+			beschreibt ein allgemeines lineares Randwertproblem. Übergang in die variationelle Formulierung von $\left(\tilde{P}_{d}\right)$.{}
+			\begin{equation*}
+				-\int_{\W}\operatorname{div}\left(\mathbb{A}\left(x\right)\nabla u\left(x\right)\right)v\left(x\right)\d x = \int_{\W}\mathbb{A}\left(x\right)\nabla u\left(x\right)\cdot\nabla v\left(x\right)\d x - \bcancel{\int_{\partial\W}\nabla u\left(x\right)\cdot n\left(x\right)v\left(x\right)\d S}
+			\end{equation*}
+			ergibt die Bilinearform $a\colon V\times V\to\R$ mit
+			\begin{equation*}
+				a\left(u,v\right) := \int_{\W} \mathbb{A}\left(x\right)\nabla u\left(x\right)\cdot\nabla v\left(x\right) + \left(c\left(x\right)\cdot\nabla u\left(x\right)\right)v\left(x\right) + d\left(x\right)u\left(x\right)v\left(x\right)\d x
+			\end{equation*}
+			der wohldefiniert ist, wenn $d\in\L^{\infty}\left(\W\right), c\in\L^{\infty}\left(\W,\R^{d}\right),\mathbb{A}\in\L^{\infty}\left(\W,\R^{d\times d}\right)$.{}
+		\item Betrachte das Problem
+			\begin{equation*}
+				\left(\tilde{V}_{d}\right) \begin{cases}
+					\text{Finde }u\in V=\H^{1}_{0}\left(\W\right)\\
+					a\left(u,v\right) = \left<f,v\right> \forall v\in V
+				\end{cases}
+			\end{equation*}
+			ist mit dem Satz von Lax-Milgram lösbar, wenn $a$ stark positiv und beschränkt ist. Hinreichend dafür ist zum Beispiel $\mathbb{A}\left(x\right)$ positiv definit, symmetrisch $\forall x\in\W$ und es gilt $\|d\|_{0,\infty} \geq \frac{1}{2}\|Dc\|_{0,\infty}$.
+	\end{itemize}
+\end{expl}

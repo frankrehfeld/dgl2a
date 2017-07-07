@@ -1,0 +1,113 @@
+\lecture{13}{30.05.2017}{Dr. Raphael Kruse}{Frank Rehfeld}
+\begin{enumerate}
+	\setcounter{enumi}{1}
+	\item \underline{zugehörige Operatorgleichung}\\
+		$A_{m}\colon V_{m}\to V_{m}^{\prime}$ wird analog zu Kapitel 4. und 5. definiert. Es ergibt sich
+		\begin{equation*}
+			\left(V_{m}\right)\begin{cases}
+				\text{Finde }u_{m}\in V_{m}\text{ mit}\\
+				a\left(u_{m},v_{m}\right) = \left<f,v_{m}\right>
+			\end{cases}
+			\Leftrightarrow \left(O_{m}\right)\begin{cases}
+				\text{Finde }u_{m}\in V_{m}\text{ mit}\\
+				A_{m}\left[u_{m}\right] = \left<f,\cdot\right>
+			\end{cases}
+		\end{equation*}
+		Nun definieren wir uns die Operatoren
+		\begin{equation*}
+			p_{m}\colon V_{m}\to V \hspace*{5em} p_{m}^{\star}\colon V^{\prime} \to V_{m}^{\prime}
+		\end{equation*}
+		Hierbei wird $p_{m}$ als \textbf{Prolongationsoperator} bezeichnet und $p_{m}^{\star}$ beschreibt den zu $p_{m}$ adjungierten Operator mit
+		\begin{equation*}
+			\left<p_{m}^{\star}g,v_{m}\right> = \left<g,p_{m}v_{m}\right> \forall v_{m}\in V_{m}
+		\end{equation*}
+		$p_{m}^{\star}$ ist linear und beschränkt da
+		\begin{align*}
+			\|p_{m}^{\star}g\|_{V_{m}^{\prime}} &= \operatorname{sup}_{v_{m}\in V_{m}, v_{m}\neq 0} \frac{|\left<p_{m}^{\star}g,v_{m}\right>|}{\|v_{m}\|_{V_{m}}}\\
+			&= \operatorname{sup}_{v_{m}\in V_{m}, v_{m}\neq 0} \frac{|\left<g,p_{m}v_{m}\right>|}{\|v_{m}\|_{V_{m}}}\\
+			&\leq \operatorname{sup}_{v\in V, v\neq 0} \frac{|\left<g,v\right>|}{\|v\|_{V}}\\
+			&= \|g\|_{V^{\prime}}
+		\end{align*}
+		Es gilt also
+		\begin{equation*}
+			A_{m}\left[v_{m}\right] = p_{m}^{\star}A\left[p_{m}v_{m}\right] \forall v_{m}\in V_{m}
+		\end{equation*}
+		und somit
+		\begin{align*}
+			\left<A_{m}\left[v_{m}\right],w_{m}\right>_{V_{m}^{\prime}\times V_{m}} &= a\left(v_{m},w_{m}\right)\\
+				&= \left<A\left[v_{m}\right],w_{m}\right>_{V^{\prime}\times V}\\
+				&= \left<A\left[p_{m}v_{m}\right],p_{m}w_{m}\right>_{V^{\prime}\times V}\\
+				&= \left<p_{m}^{\star}A\left[p_{m}v_{m}\right],w_{m}\right>_{V_{m}^{\prime}\times V_{m}}
+		\end{align*}
+		Damit ist klar, dass
+		\begin{equation*}
+			\left(O_{m}\right)\begin{cases}
+				\text{Finde }u_{m}\in V_{m}\text{ mit}\\
+				A_{m}\left[u_{m}\right] = \left<f,\cdot\right>
+			\end{cases}
+			\Leftrightarrow{}
+			\left(O_{m}^{\star}\right)\begin{cases}
+				\text{Finde }u_{m}\in V_{m}\text{ mit}\\
+				p_{m}^{\star}A_{m}\left[p_{m}u_{m}\right] = p_{m}^{\star}\left<f,\cdot\right>
+			\end{cases}
+		\end{equation*}
+	\item \underline{Konvergenz von $\left(u_{m}\right)_{m}\to u$}
+		\begin{lemma}[Lemma von Cea]
+			Sei $\left(V,\left(\cdot,\cdot\right),\|\cdot\|_{V}\right)$ ein reeller Hilbertraumm $V_{m}\subset V$ ein abgeschlossener Teilraum, $a\colon V\times V\to \R$ bilinear, beschränkt, stark positiv. $u\in V$ löst $\left(V\right)$, $u_{m}\in V_{m}$ löst $\left(V_{m}\right)$. Dann gilt
+			\begin{equation*}
+				\|u-u_{m}\|_{V} \leq \frac{\beta}{\mu}\operatorname{dist}\left(u,V_{m}\right)
+			\end{equation*}
+		\end{lemma}
+		\begin{proof}
+			$u$ und $u_{m}$ existieren nach dem Satz von Lax-Milgram und es gilt
+			\begin{align*}
+				a\left(u,v\right) &= \left<f,v\right>_{V^{\prime}\times V}\\
+				a\left(u_{m},v_{m}\right) &= \left<f,v_{m}\right>_{V_{m}^{\prime}\times V_{m}}
+			\end{align*}
+			und somit ergibt sich
+			\begin{equation*}
+				a\left(u,v_{m}\right) - a\left(u_{m},v_{m}\right) \text{ oder } a\left(u-u_{m},v_{m}\right) = 0 \forall v_{m}\in V_{m}
+			\end{equation*}
+			Diese Eigenschaft wird \textbf{Galerkin-Orthogonalität} genannt. Es folgt
+			\begin{align*}
+				\mu\|u-u_{m}\|_{V}^{2} &\leq a\left(u-u_{m},u-u_{m}\right)\\
+					&= a\left(u-u_{m},u-v_{m}\right) + \underbrace{a\left(u-u_{m},v_{m}-u_{m}\right)}_{=0}\\
+					&\leq \beta\|u-u_{m}\|_{V}\|u-v_{m}\|_{V}
+			\end{align*}
+			und somit
+			\begin{equation*}
+				\|u-u_{m}\|_{V}\leq \frac{\beta}{\mu}\|u-v_{m}\| \forall v_{m}\in V_{m}
+			\end{equation*}
+			Durch einen Übergang zum Infimum erhält man die Aussage.
+		\end{proof}
+		Die Aussage lässt sich auch auf nichtlineare Probleme übertragen
+\end{enumerate}
+
+\textbf{Ab jetzt sei $a$ bilinear.}
+
+\underline{Implementierung}\\
+Sei $m\in\N$ fest gewählt, dass $\operatorname{dist}\left(u,V_{m}\right)$ hinreichend klein und $V_{m} = \operatorname{span}\left\{\phi_{j},j=1,\dots,m\right\}, \operatorname{dim}V=m$. Dann lässt sich $u_{m} = \sum_{j=1}^{m} \alpha_{j}\phi_{j}$ darstellen, wobei $\alpha = \left(\alpha_{1},\dots,\alpha_{m}\right)^{T}$ eindeutig ist. Dann gilt
+\begin{align*}
+	u_{m}\text{ löst }\left(V_{m}\right) &\Leftrightarrow a\left(u_{m},\phi_{j}\right) = \left<f,\phi_{j}\right>, j=1,\dots,m\\
+		&\Leftrightarrow \sum_{j=1}^{m}\alpha_{j}a\left(\phi_{j},\phi_{i}\right) = \left<f,\phi_{i}\right>, i=1,\dots,m
+\end{align*}
+und somit ist das Problem auf ein lineares Gleichungssystem reduziert. Hierfür definieren wir
+\begin{equation*}
+	\left[\mathbb{A}_{m}\right]_{i,j} = a\left(\phi_{i},\phi_{j}\right) \hspace*{5em} \left[f_{m}\right]_{i} = \left<f,\phi_{i}\right>
+\end{equation*}
+und erhalten das System
+\begin{equation*}
+	\mathbb{A}_{m} \alpha = f_{m}
+\end{equation*}
+Die Wahl von $V_{m}$ beeinflusst sowohl die Konvergenzgeschwindigkeit, als auch die Kosten. Nutze Algorithmen, die schnell sind, wenn $\mathbb{A}_{m}$ sparse ist. Also ist erwünscht, dass $a\left(\phi_{i},\phi_{j}\right) = 0$ für möglichst viele Kombinationen von $i$ und $j$.
+
+Betrachte das Problem $\left(P_{\text{Dir}}\right)$ linear mit $V=\H^{1}_{0}\left(\W\right)$, $\W=\left(a,b\right)$ mit einem äquidistanten Gitter $z_{i} = a+ih$. $\left(z_{j}\right)_{j=1}^{m}$ heißen \textbf{Knoten} und $\left[z_{i-1},z_{i}\right]$ heißen \textbf{Elemente des Gitters}.
+\begin{definition}
+	Funktionen $\phi_{j}\colon\W\to\R$ mit
+	\begin{enumerate}
+		\item $\phi_{j}$ stetig
+		\item $\phi_{j}\left(z_{i}\right) = \delta_{ij}$
+		\item $\phi_{j}\einschraenkung_{\left[z_{i-1},z_{i}\right]}\in\mathbb{P}_{1}$
+	\end{enumerate}
+	\vspace*{0.5em}heißen \textbf{Hütchenfunktionen}.
+\end{definition}
